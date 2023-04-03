@@ -1,4 +1,4 @@
-import 'package:dia/widgets/auth/custom_textfield.dart';
+import 'package:dia/view_model/user_inputs.dart';
 import 'package:flutter/material.dart';
 
 class UserRegister extends StatelessWidget {
@@ -8,7 +8,12 @@ class UserRegister extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: const <Widget>[CustomTextField()],
+        children: <Widget>[
+          const SizedBox(height: 120),
+          UserInputs.signInMail,
+          UserInputs.signInPassword,
+          UserInputs.signInPasswordAgain
+        ],
       ),
     );
   }

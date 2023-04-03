@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1026749563670",
+    "project_id": "diarymedia-90bc6",
+    "storage_bucket": "diarymedia-90bc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026749563670:android:ea66ebad8e3c095cb80637",
+        "android_client_info": {
+          "package_name": "com.example.dia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026749563670-v7937ecvjptb3c7e5qvg8ui6rmia5h9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi0kiN7bdFzVSvJox6EKeKrNCMVhGfF1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026749563670-v7937ecvjptb3c7e5qvg8ui6rmia5h9o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

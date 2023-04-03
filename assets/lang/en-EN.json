@@ -1,3 +1,5 @@
 {
-    "mail":"E-Mail Address"
+    "mail":"E-Mail Address",
+    "password":"Password",
+    "passwordAgain":"Password Again"
 }

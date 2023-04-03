@@ -1,3 +1,5 @@
 {
-    "mail":"E-Posta Adresi"
+    "mail":"E-Posta Adresi",
+    "password":"Şifre",
+    "passwordAgain":"Şifreyi Doğrula "
 }
