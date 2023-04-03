@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/constants.dart';
@@ -9,14 +10,14 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: CustomPaddings.kTextFieldPadding,
       child: TextField(
         cursorColor: CustomColors.primaryGrey,
         decoration: InputDecoration(
           enabledBorder: CustomInputDecoration.authDecoration,
           focusedBorder: CustomInputDecoration.authDecoration,
-          hintText: "E-Posta",
+          hintText: "mail".tr(),
           focusColor: CustomColors.primaryGrey,
         ),
       ),
