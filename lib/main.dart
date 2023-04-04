@@ -1,8 +1,11 @@
 import 'package:dia/firebase_options.dart';
+import 'package:dia/view_model/sign_in_checkbox.dart';
+import 'package:dia/views/auth/user_create_initial_profile.dart';
 import 'package:dia/views/auth/user_register.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,11 +14,18 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await EasyLocalization.ensureInitialized();
-  runApp(EasyLocalization(
-      fallbackLocale: const Locale('en', 'EN'),
-      path: "assets/lang",
-      supportedLocales: const [Locale("tr", "TR"), Locale("en", "EN")],
-      child: const MyApp()));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => SignInCheckbox(),
+      ),
+    ],
+    child: EasyLocalization(
+        fallbackLocale: const Locale('en', 'EN'),
+        path: "assets/lang",
+        supportedLocales: const [Locale("tr", "TR"), Locale("en", "EN")],
+        child: const MyApp()),
+  ));
 }
 
 class MyApp extends StatelessWidget {
