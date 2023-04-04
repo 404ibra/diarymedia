@@ -1,5 +1,9 @@
 {
-    "mail":"E-Posta Adresi",
-    "password":"Şifre",
-    "passwordAgain":"Şifreyi Doğrula "
+    "mail": "E-Posta Adresi",
+    "password": "Şifre",
+    "passwordAgain": "Şifreyi Doğrula ",
+    "signInHeadline": "Başlamak için\nbir hesap\noluşturalım",
+    "registerText": "Kayıt Ol",
+    "youHaveAlreadyAccount": "Zaten bir hesabınız var mı ?",
+    "loginText": " Giriş Yapın"
 }

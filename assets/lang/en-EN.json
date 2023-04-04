@@ -1,5 +1,10 @@
 {
     "mail":"E-Mail Address",
     "password":"Password",
-    "passwordAgain":"Password Again"
+    "passwordAgain":"Password Again",
+    "signInHeadline": "Let's create\nan account\nto get started",
+    "registerText": "Sign In",
+    "youHaveAlreadyAccount": "You have already account ?",
+    "loginText": " Login",
+    "signInDescriptionText": "Before we start everything, we ask you to write your e-mail address and then create a strong password so that we can create a special account for you."
 }
