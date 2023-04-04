@@ -1,17 +1,19 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/constant/custom_textstyles.dart';
 import 'package:dia/service/firebase_auth_service.dart';
+import 'package:dia/view_model/sign_in_checkbox.dart';
 import 'package:dia/view_model/user_inputs.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UserRegister extends StatelessWidget {
   const UserRegister({super.key});
   @override
   Widget build(BuildContext context) {
     double isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom;
-
+    final signInProvider = Provider.of<SignInCheckbox>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -60,6 +62,29 @@ class UserRegister extends StatelessWidget {
             UserInputs.signInMail,
             UserInputs.signInPassword,
             UserInputs.signInPasswordAgain,
+            const SizedBox(height: 15),
+            Padding(
+              padding: CustomPaddings.kHorizontalPadding,
+              child: Row(
+                children: [
+                  Checkbox(
+                      activeColor: CustomColors.primaryGreen,
+                      value: signInProvider.checkboxStatus,
+                      onChanged: (value) {
+                        signInProvider.changeCheckboxStatus();
+                      }),
+                  const SizedBox(width: 5),
+                  Text(
+                    "Kullanıcı sözleşmesini okudum ve kabul ediyorum",
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.brown.shade300,
+                        decorationThickness: 1.7,
+                        color: Colors.brown.shade300),
+                  )
+                ],
+              ),
+            ),
             Center(
               child: TextButton(
                   onPressed: () {
@@ -74,7 +99,6 @@ class UserRegister extends StatelessWidget {
                         .copyWith(fontSize: 21, fontWeight: FontWeight.bold),
                   )),
             ),
-            Checkbox(value: true, onChanged: (value) {}),
             Center(
               child: RichText(
                   text: TextSpan(children: [
