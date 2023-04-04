@@ -39,7 +39,10 @@ dependencies:
   # firebase service
   firebase_core: 
   firebase_auth: 
-  cloud_firestore: 
+  cloud_firestore:
+
+  #state mng.
+  get: ^4.6.5 
 
   # localization
   easy_localization: ^3.0.1

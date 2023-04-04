@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: const UserRegister(),
     );
