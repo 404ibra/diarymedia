@@ -5,4 +5,6 @@ class CustomPaddings {
       EdgeInsets.symmetric(horizontal: 16);
   static const EdgeInsetsGeometry kTextFieldPadding =
       EdgeInsets.symmetric(horizontal: 42);
+  static const EdgeInsetsGeometry searchbarPadding =
+      EdgeInsets.symmetric(horizontal: 14);
 }
