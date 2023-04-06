@@ -7,4 +7,6 @@ class CustomPaddings {
       EdgeInsets.symmetric(horizontal: 42);
   static const EdgeInsetsGeometry searchbarPadding =
       EdgeInsets.symmetric(horizontal: 14);
+  static const EdgeInsetsGeometry kVerticalPadding =
+      EdgeInsets.symmetric(vertical: 8);
 }
