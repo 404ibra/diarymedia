@@ -12,6 +12,5 @@ class CreateInitProfileProviders extends ChangeNotifier {
   void changeBirthday(DateTime value) {
     birthday = value;
     notifyListeners();
-    print(birthday);
   }
 }

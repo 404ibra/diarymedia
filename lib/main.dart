@@ -1,3 +1,4 @@
+import 'package:dia/constant/constants.dart';
 import 'package:dia/firebase_options.dart';
 import 'package:dia/view_model/sign_in_checkbox.dart';
 import 'package:dia/views/auth/user_create_initial_profile.dart';
@@ -45,8 +46,8 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-      ),
+          scaffoldBackgroundColor: Colors.white,
+          primaryColor: CustomColors.primaryPurple),
       home: const CreateInitialProfile(),
     );
   }

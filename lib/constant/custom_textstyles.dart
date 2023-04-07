@@ -8,4 +8,6 @@ class TextStyles {
       TextStyle(color: CustomColors.primaryGreen, fontSize: 15);
   static const TextStyle kHeadlineTextStyle =
       TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold);
+  static const TextStyle largeElevatedButtonText =
+      TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600);
 }
