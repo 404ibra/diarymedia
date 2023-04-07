@@ -5,6 +5,7 @@ import 'package:dia/views/auth/user_register.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -24,7 +25,7 @@ Future<void> main() async {
         fallbackLocale: const Locale('en', 'EN'),
         path: "assets/lang",
         supportedLocales: const [Locale("tr", "TR"), Locale("en", "EN")],
-        child: const MyApp()),
+        child: GetMaterialApp(home: const MyApp())),
   ));
 }
 

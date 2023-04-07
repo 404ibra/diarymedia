@@ -24,13 +24,8 @@ class UserRegister extends StatelessWidget {
                     duration: const Duration(milliseconds: 500),
                     child: Padding(
                       padding: CustomPaddings.kHorizontalPadding,
-                      child: Text(
-                        "signInHeadline".tr(),
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      child: Text("signInHeadline".tr(),
+                          style: TextStyles.kHeadlineTextStyle),
                     ),
                   )
                 : isKeyboardOpen <= 0
@@ -91,7 +86,8 @@ class UserRegister extends StatelessWidget {
                     FirebaseFunctions().signInWithMail(
                         UserInputs.signInMail.controller.text,
                         UserInputs.signInPassword.controller.text,
-                        UserInputs.signInPasswordAgain.controller.text);
+                        UserInputs.signInPasswordAgain.controller.text,
+                        signInProvider.checkboxStatus);
                   },
                   child: Text(
                     "registerText".tr(),

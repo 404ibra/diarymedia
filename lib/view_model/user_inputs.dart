@@ -19,4 +19,22 @@ class UserInputs {
       textInputType: TextInputType.visiblePassword,
       textInputAction: TextInputAction.done,
       hint: "passwordAgain");
+
+  static final firstName = CustomTextField(
+      obscureText: false,
+      textInputType: TextInputType.text,
+      textInputAction: TextInputAction.next,
+      hint: "First Name");
+
+  static final lastName = CustomTextField(
+      obscureText: false,
+      textInputType: TextInputType.text,
+      textInputAction: TextInputAction.next,
+      hint: "Last Name");
+
+  static final userName = CustomTextField(
+      obscureText: false,
+      textInputType: TextInputType.text,
+      textInputAction: TextInputAction.next,
+      hint: "User Name");
 }
