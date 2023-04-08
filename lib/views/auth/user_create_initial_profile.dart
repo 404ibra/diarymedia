@@ -4,7 +4,7 @@ import 'package:dia/view_model/user_inputs.dart';
 import 'package:dia/views/auth/pick_profile_picture.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:provider/provider.dart';
 // TO DO BUG
 import 'package:easy_localization/easy_localization.dart' as Translate;
@@ -19,7 +19,8 @@ class CreateInitialProfile extends StatelessWidget {
     final createInitProfProviders =
         Provider.of<CreateInitProfileProviders>(context);
     return Scaffold(
-      body: SingleChildScrollView(
+      body: SafeArea(
+        bottom: true,
         child: SizedBox(
           height: height,
           child: Column(
@@ -47,7 +48,7 @@ class CreateInitialProfile extends StatelessWidget {
                         createInitProfProviders.changeBirthdayCheckbox();
                       }),
                   Text(
-                    "createInitProfileBirthdayCheckbox".translation.tr(),
+                    "createInitProfileBirthdayCheckbox".tr(),
                     style: TextStyles.kTextStylePrimaryGrey,
                   ),
                 ],
@@ -67,7 +68,7 @@ class CreateInitialProfile extends StatelessWidget {
               LargeElevatedButton(
                 buttonText: "letsContinue".tr(),
                 onPressed: () {
-                  Get.to(() => PickProfilePicture());
+                  // Get.to(() => PickProfilePicture());
                 },
               )
             ],
