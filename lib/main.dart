@@ -27,6 +27,7 @@ Future<void> main() async {
         create: (context) => CreateInitProfileProviders(),
       ),
     ],
+    //deneme
     child: EasyLocalization(
         fallbackLocale: const Locale('en', 'EN'),
         path: "assets/lang",
