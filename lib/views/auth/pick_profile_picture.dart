@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../../constant/constants.dart';
 
 class PickProfilePicture extends StatelessWidget {
   const PickProfilePicture({super.key});
@@ -6,8 +9,19 @@ class PickProfilePicture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[],
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: CustomPaddings.kHorizontalPadding,
+              child: Text(
+                "createInitialProfileHeadlineText".tr(),
+                style: TextStyles.kHeadlineTextStyle,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

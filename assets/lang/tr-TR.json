@@ -6,5 +6,7 @@
     "registerText": "Kayıt Ol",
     "youHaveAlreadyAccount": "Zaten bir hesabınız var mı ?",
     "loginText": " Giriş Yapın",
-    "signInDescriptionText": "Her şeye başlamadan sizden e-posta adresinizi ve güçlü bir şifre oluşturmanızı isteyeceğiz. "
+    "signInDescriptionText": "Her şeye başlamadan sizden e-posta adresinizi ve güçlü bir şifre oluşturmanızı isteyeceğiz. ",
+    "createInitialProfileNameDescription" : 
+    " *Bu alana yazdığınız isim profilinizde öne çıkan isim olacaktır. Gerçek isminizi kullanabilir veya anonim bir isim kullanabilirsiniz."
 }

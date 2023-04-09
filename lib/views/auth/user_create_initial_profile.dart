@@ -4,10 +4,10 @@ import 'package:dia/view_model/user_inputs.dart';
 import 'package:dia/views/auth/pick_profile_picture.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart' show Get;
+import 'package:get/get.dart' show GetNavigation;
 import 'package:provider/provider.dart';
-// TO DO BUG
-import 'package:easy_localization/easy_localization.dart' as Translate;
+import 'package:easy_localization/easy_localization.dart';
 import '../../widgets/large_elevated_button.dart';
 
 class CreateInitialProfile extends StatelessWidget {
@@ -26,7 +26,6 @@ class CreateInitialProfile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(height: 25),
               Padding(
                 padding: CustomPaddings.kHorizontalPadding,
                 child: Text(
@@ -34,11 +33,45 @@ class CreateInitialProfile extends StatelessWidget {
                   style: TextStyles.kHeadlineTextStyle,
                 ),
               ),
-              const SizedBox(height: 45),
+              const Spacer(),
+              const Padding(
+                padding: CustomPaddings.kHorizontalPadding,
+                child: Text(
+                  "Name",
+                  style: TextStyles.lHeadlineTextStyle,
+                ),
+              ),
+              Padding(
+                padding: CustomPaddings.kHorizontalPadding,
+                child: Text(
+                  "createInitialProfileNameDescription".tr(),
+                  style: TextStyles.kTextStylePrimaryGrey,
+                ),
+              ),
               Center(child: UserInputs.firstName),
-              const SizedBox(height: 25),
-              Center(child: UserInputs.lastName),
-              const SizedBox(height: 70),
+              const SizedBox(height: 30),
+              const Spacer(),
+              const Padding(
+                padding: CustomPaddings.kHorizontalPadding,
+                child: Text(
+                  "User Birthday",
+                  style: TextStyles.lHeadlineTextStyle,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: SizedBox(
+                    height: 130,
+                    child: CupertinoDatePicker(
+                        dateOrder: DatePickerDateOrder.dmy,
+                        mode: CupertinoDatePickerMode.date,
+                        initialDateTime: DateTime(2023, 2, 6),
+                        minimumDate: DateTime(1881, 11, 10),
+                        maximumDate: DateTime(2024, 2, 6),
+                        onDateTimeChanged: (value) {
+                          createInitProfProviders.changeBirthday(value);
+                        })),
+              ),
               Row(
                 children: [
                   Checkbox(
@@ -53,24 +86,13 @@ class CreateInitialProfile extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                  height: 130,
-                  child: CupertinoDatePicker(
-                      dateOrder: DatePickerDateOrder.dmy,
-                      mode: CupertinoDatePickerMode.date,
-                      initialDateTime: DateTime(2023, 2, 6),
-                      minimumDate: DateTime(1881, 11, 10),
-                      maximumDate: DateTime(2024, 2, 6),
-                      onDateTimeChanged: (value) {
-                        createInitProfProviders.changeBirthday(value);
-                      })),
               const Spacer(),
               LargeElevatedButton(
                 buttonText: "letsContinue".tr(),
                 onPressed: () {
-                  // Get.to(() => PickProfilePicture());
+                  Get.to(() => const PickProfilePicture());
                 },
-              )
+              ),
             ],
           ),
         ),
