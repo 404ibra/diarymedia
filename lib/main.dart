@@ -31,7 +31,7 @@ Future<void> main() async {
         fallbackLocale: const Locale('en', 'EN'),
         path: "assets/lang",
         supportedLocales: const [Locale("tr", "TR"), Locale("en", "EN")],
-        child: GetMaterialApp(home: const MyApp())),
+        child: const GetMaterialApp(home: MyApp())),
   ));
 }
 
