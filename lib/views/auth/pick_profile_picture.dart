@@ -1,4 +1,6 @@
-import 'package:dia/view_model/pick_image_boolen.dart';
+import 'dart:io';
+
+import 'package:dia/view_model/pick_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,7 +14,7 @@ class PickProfilePicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pickedImageProvider = Provider.of<PickImageBoolenValue>(context);
+    final pickedImageProvider = Provider.of<PickImageStage>(context);
     Future<void> addPhoto() async {
       final pickedImage = await picker.pickImage(source: ImageSource.gallery);
       pickedImageProvider.changePickedImagePath(pickedImage!.path);
@@ -30,21 +32,58 @@ class PickProfilePicture extends StatelessWidget {
                 style: TextStyles.kHeadlineTextStyle,
               ),
             ),
-            InkWell(
-              onTap: () async {
-                addPhoto();
-                pickedImageProvider.changeImagePickedStatus();
-              },
-              child: Container(
-                height: 120,
-                width: 120,
-                decoration:
-                    BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-                child: pickedImageProvider.imagePicked
-                    ? Icon(Icons.person)
-                    : Image.file(pickedImageProvider.pickedImagePath),
+            Padding(
+              padding: CustomPaddings.kVerticalPadding,
+              child: Center(
+                child: InkWell(
+                  onTap: () async {
+                    addPhoto();
+                    pickedImageProvider.changeImagePickedStatus();
+                  },
+                  child: Container(
+                      height: 120,
+                      width: 120,
+                      decoration: const BoxDecoration(
+                          color: Colors.white, shape: BoxShape.circle),
+                      child: pickedImageProvider.imagePicked
+                          ? CircleAvatar(
+                              backgroundImage: FileImage(
+                                  File(pickedImageProvider.pickedImagePath)))
+                          : const Icon(
+                              Icons.person,
+                              size: 120,
+                              color: CustomColors.primaryGrey,
+                            )),
+                ),
               ),
-            )
+            ),
+            const Padding(
+              padding: CustomPaddings.kHorizontalPadding,
+              child: Text(
+                " Choose a photo for yourself and other users",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600),
+              ),
+            ),
+            Padding(
+                padding: CustomPaddings.kHorizontalPadding,
+                child: Row(
+                  children: <Widget>[
+                    Checkbox(
+                        fillColor: const MaterialStatePropertyAll<Color>(
+                            CustomColors.primaryPurple),
+                        value: pickedImageProvider.anonymousProfilePhoto,
+                        onChanged: (value) {
+                          pickedImageProvider.changeAnonymousProfilePhoto();
+                        }),
+                    const Text(
+                      "I want use with Anonymous profiel photo",
+                      style: TextStyles.kTextStylePrimaryGrey,
+                    )
+                  ],
+                )),
           ],
         ),
       ),

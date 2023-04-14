@@ -1,6 +1,6 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/firebase_options.dart';
-import 'package:dia/view_model/pick_image_boolen.dart';
+import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/sign_in_checkbox.dart';
 import 'package:dia/views/auth/user_create_initial_profile.dart';
 import 'package:dia/views/auth/user_register.dart';
@@ -28,7 +28,7 @@ Future<void> main() async {
         create: (context) => CreateInitProfileProviders(),
       ),
       ChangeNotifierProvider(
-        create: (context) => PickImageBoolenValue(),
+        create: (context) => PickImageStage(),
       )
     ],
     //deneme

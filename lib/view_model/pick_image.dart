@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class PickImageBoolenValue extends ChangeNotifier {
+class PickImageStage extends ChangeNotifier {
+  bool anonymousProfilePhoto = false;
   bool imagePicked = false;
-  String? pickedImagePath;
+  String pickedImagePath = "";
   void changeImagePickedStatus() {
     imagePicked = !imagePicked;
     notifyListeners();
@@ -10,6 +11,11 @@ class PickImageBoolenValue extends ChangeNotifier {
 
   void changePickedImagePath(String path) {
     pickedImagePath = path;
+    notifyListeners();
+  }
+
+  void changeAnonymousProfilePhoto() {
+    anonymousProfilePhoto = !anonymousProfilePhoto;
     notifyListeners();
   }
 }
