@@ -47,5 +47,17 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Galeriye erişim izni</string>
+
+	
+	<key>NSCameraUsageDescription</key>
+	<string>Kameraya erişim izni</string>
+
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Mikrafon kullanma izni</string>
 </dict>
 </plist>

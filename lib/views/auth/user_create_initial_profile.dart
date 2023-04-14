@@ -90,7 +90,7 @@ class CreateInitialProfile extends StatelessWidget {
               LargeElevatedButton(
                 buttonText: "letsContinue".tr(),
                 onPressed: () {
-                  Get.to(() => const PickProfilePicture());
+                  Get.to(() => PickProfilePicture());
                 },
               ),
             ],
