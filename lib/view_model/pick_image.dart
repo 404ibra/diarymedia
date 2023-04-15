@@ -5,6 +5,19 @@ class PickImageBoolenValue extends ChangeNotifier {
   bool imagePicked = false;
   String pickedImagePath = "";
   String genderSelect = "Select";
+  bool birthdayCheckbox = false;
+  DateTime birthday = DateTime.now();
+
+  void changeBirthdayCheckbox() {
+    birthdayCheckbox = !birthdayCheckbox;
+    notifyListeners();
+  }
+
+  void changeBirthday(DateTime value) {
+    birthday = value;
+    notifyListeners();
+  }
+
   void changeImagePickedStatus() {
     imagePicked = !imagePicked;
     notifyListeners();

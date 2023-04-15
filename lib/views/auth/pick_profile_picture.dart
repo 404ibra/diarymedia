@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:dia/service/firebase_auth_service.dart';
 import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/user_inputs.dart';
-import 'package:dia/views/auth/select_username.dart';
+import 'package:dia/views/auth/home_page.dart';
 import 'package:dia/widgets/large_elevated_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class PickProfilePicture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pickedImageProvider = Provider.of<PickImageBoolenValue>(context);
+
     Future<void> addPhoto() async {
       final pickedImage = await picker.pickImage(source: ImageSource.gallery);
       pickedImageProvider.changePickedImagePath(pickedImage!.path);
@@ -143,7 +145,12 @@ class PickProfilePicture extends StatelessWidget {
             LargeElevatedButton(
               buttonText: "letsContinue".tr(),
               onPressed: () {
-                Get.to(() => const CreateUsername());
+                FirebaseFunctions().createUserDetails(
+                    pickedImageProvider.genderSelect,
+                    pickedImageProvider.anonymousProfilePhoto,
+                    pickedImageProvider.birthday,
+                    "userProfilePhotoPath",
+                    context);
               },
             ),
           ],

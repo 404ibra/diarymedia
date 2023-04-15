@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'view_model/create_init_profile_providers.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -23,9 +21,6 @@ Future<void> main() async {
     providers: [
       ChangeNotifierProvider(
         create: (context) => SignInCheckbox(),
-      ),
-      ChangeNotifierProvider(
-        create: (context) => CreateInitProfileProviders(),
       ),
       ChangeNotifierProvider(
         create: (context) => PickImageBoolenValue(),
@@ -54,7 +49,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           primaryColor: CustomColors.primaryPurple),
-      home: const CreateInitialProfile(),
+      home: const UserRegister(),
     );
   }
 }

@@ -4,3 +4,7 @@ import 'package:flutter/material.dart';
 class FirebaseAuthService {
   static final AuthService = FirebaseAuth.instance;
 }
+
+class FirebaseRef {
+  static const FirebaseUsers = "Users";
+}

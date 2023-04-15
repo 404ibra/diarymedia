@@ -1,5 +1,5 @@
 import 'package:dia/constant/constants.dart';
-import 'package:dia/view_model/create_init_profile_providers.dart';
+import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/user_inputs.dart';
 import 'package:dia/views/auth/pick_profile_picture.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,8 +16,7 @@ class CreateInitialProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    final createInitProfProviders =
-        Provider.of<CreateInitProfileProviders>(context);
+    final createInitProfProviders = Provider.of<PickImageBoolenValue>(context);
     return Scaffold(
       body: SafeArea(
         bottom: true,
