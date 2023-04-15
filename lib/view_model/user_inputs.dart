@@ -36,5 +36,5 @@ class UserInputs {
       obscureText: false,
       textInputType: TextInputType.text,
       textInputAction: TextInputAction.next,
-      hint: "User Name");
+      hint: "@Username");
 }

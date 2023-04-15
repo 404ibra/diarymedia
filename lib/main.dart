@@ -28,7 +28,7 @@ Future<void> main() async {
         create: (context) => CreateInitProfileProviders(),
       ),
       ChangeNotifierProvider(
-        create: (context) => PickImageStage(),
+        create: (context) => PickImageBoolenValue(),
       )
     ],
     //deneme

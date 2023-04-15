@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-class PickImageStage extends ChangeNotifier {
+class PickImageBoolenValue extends ChangeNotifier {
   bool anonymousProfilePhoto = false;
   bool imagePicked = false;
   String pickedImagePath = "";
+  String genderSelect = "Select";
   void changeImagePickedStatus() {
     imagePicked = !imagePicked;
     notifyListeners();
@@ -16,6 +17,11 @@ class PickImageStage extends ChangeNotifier {
 
   void changeAnonymousProfilePhoto() {
     anonymousProfilePhoto = !anonymousProfilePhoto;
+    notifyListeners();
+  }
+
+  void changeGenderSelect(String gender) {
+    genderSelect = gender;
     notifyListeners();
   }
 }

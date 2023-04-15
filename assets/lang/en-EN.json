@@ -11,5 +11,7 @@
     "createInitProfileBirthdayCheckbox": "I want other users to see my birthday on my\nprofile",
     "letsContinue": "Let's Continue",
     "createInitialProfileNameDescription" : 
-    " *The name you enter in this field will be the prominent name in your profile. You can use your real name or use an anonymous name."
+    " *The name you enter in this field will be the prominent name in your profile. You can use your real name or use an anonymous name.",
+    "createUserNameHeadlineText" : "Finally\nlet's choose your\nusername",
+    "letsStart": "Let's Start" 
 }
