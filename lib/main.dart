@@ -1,7 +1,9 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/firebase_options.dart';
+import 'package:dia/view_model/navbar_viewmodels.dart';
 import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/sign_in_checkbox.dart';
+import 'package:dia/views/auth/home_page.dart';
 import 'package:dia/views/auth/user_create_initial_profile.dart';
 import 'package:dia/views/auth/user_register.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -24,6 +26,9 @@ Future<void> main() async {
       ),
       ChangeNotifierProvider(
         create: (context) => PickImageBoolenValue(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => NavBarViewModel(),
       )
     ],
     //deneme
@@ -49,7 +54,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           primaryColor: CustomColors.primaryPurple),
-      home: const UserRegister(),
+      home: const HomePage(),
     );
   }
 }
