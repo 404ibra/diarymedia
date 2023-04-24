@@ -1,7 +1,9 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/view_model/user_inputs.dart';
 import 'package:dia/views/new_diary/new_diary_view.dart';
+import 'package:dia/widgets/custom_bordered_button.dart';
 import 'package:dia/widgets/navbar.dart';
+import 'package:dia/widgets/profile_stats.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -85,58 +87,13 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  Container(
-                    height: 35,
-                    width: 120,
-                    decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black,
-                          spreadRadius: 0.2,
-                          blurRadius: 1,
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(
-                          width: 1, color: CustomColors.primaryPurple),
-                      color: Colors.white,
-                    ),
-                    child: const Center(child: Text("Düzenle")),
-                  )
+                  const CustomBordererdButton(buttonText: "Düzenle")
                 ],
               ),
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-              child: Column(
-                children: [
-                  Row(
-                    children: const <Widget>[
-                      Text(
-                        "Takipçi:",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text("404")
-                    ],
-                  ),
-                  Row(
-                    children: const <Widget>[
-                      Text(
-                        "Takip Edilen:",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text("88")
-                    ],
-                  ),
-                ],
-              ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+              child: ProfileStats(),
             ),
             const Divider(
               thickness: 1.2,

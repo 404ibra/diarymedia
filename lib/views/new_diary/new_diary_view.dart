@@ -1,5 +1,7 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/constant/custom_colors.dart';
+import 'package:dia/widgets/custom_bordered_button.dart';
+import 'package:dia/widgets/diary_topics_container.dart';
 import 'package:flutter/material.dart';
 
 class NewDiary extends StatelessWidget {
@@ -16,28 +18,13 @@ class NewDiary extends StatelessWidget {
             children: <Widget>[
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    const Icon(
+                  children: const <Widget>[
+                    Icon(
                       Icons.arrow_back,
                       color: CustomColors.primaryPurple,
                     ),
-                    Container(
-                      height: 35,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black,
-                            spreadRadius: 0.2,
-                            blurRadius: 1,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                            width: 1, color: CustomColors.primaryPurple),
-                        color: Colors.white,
-                      ),
-                      child: const Center(child: Text("Oluştur")),
+                    CustomBordererdButton(
+                      buttonText: "Oluştur",
                     )
                   ]),
               const SizedBox(height: 10),
@@ -47,6 +34,33 @@ class NewDiary extends StatelessWidget {
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
                     fontSize: 18),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: SizedBox(
+                  height: 34,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      DiaryTopicsContainer(
+                          topicColor: Colors.red,
+                          topicIcon: Icons.list_rounded,
+                          topicText: "Gündem"),
+                      DiaryTopicsContainer(
+                          topicColor: Colors.green.shade700,
+                          topicIcon: Icons.face,
+                          topicText: "Bakım"),
+                      DiaryTopicsContainer(
+                          topicColor: Colors.orange.shade800,
+                          topicIcon: Icons.sports_basketball,
+                          topicText: "Spor"),
+                      DiaryTopicsContainer(
+                          topicColor: Colors.blue.shade800,
+                          topicIcon: Icons.book,
+                          topicText: "Eğitim")
+                    ],
+                  ),
+                ),
               )
             ],
           ),

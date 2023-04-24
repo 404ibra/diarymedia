@@ -1,9 +1,10 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/firebase_options.dart';
 import 'package:dia/view_model/navbar_viewmodels.dart';
+import 'package:dia/view_model/new_diary_viewmodels.dart';
 import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/sign_in_checkbox.dart';
-import 'package:dia/views/auth/profile_page.dart';
+import 'package:dia/views/profile_page.dart';
 import 'package:dia/views/auth/user_create_initial_profile.dart';
 import 'package:dia/views/auth/user_register.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -29,6 +30,9 @@ Future<void> main() async {
       ),
       ChangeNotifierProvider(
         create: (context) => NavBarViewModel(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => TopicsContainerProivder(),
       )
     ],
     //deneme

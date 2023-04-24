@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dia/service/firebase_auth_service.dart';
 import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/user_inputs.dart';
-import 'package:dia/views/auth/profile_page.dart';
+import 'package:dia/views/profile_page.dart';
 import 'package:dia/widgets/large_elevated_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
