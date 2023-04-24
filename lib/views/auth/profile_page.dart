@@ -1,8 +1,10 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/view_model/user_inputs.dart';
+import 'package:dia/views/new_diary/new_diary_view.dart';
 import 'package:dia/widgets/navbar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,7 +14,16 @@ class HomePage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       bottomNavigationBar: NavBar(),
-      floatingActionButton: FloatingActionButton(onPressed: null),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.to(() => const NewDiary(), transition: Transition.fadeIn);
+          },
+          backgroundColor: CustomColors.primaryPurple,
+          child: const Text(
+            "+",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
+          )),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
