@@ -7,11 +7,14 @@ class DiaryTopicsContainer extends StatelessWidget {
       {super.key,
       required this.topicColor,
       required this.topicIcon,
-      required this.topicText});
+      required this.topicText,
+      required this.topicIndex});
 
   final String topicText;
   IconData topicIcon;
   Color topicColor;
+  int topicIndex;
+
   @override
   Widget build(BuildContext context) {
     final newDiaryViewModel = Provider.of<TopicsContainerProivder>(context);
@@ -19,13 +22,14 @@ class DiaryTopicsContainer extends StatelessWidget {
       padding: const EdgeInsets.only(right: 12),
       child: InkWell(
         onTap: () {
-          print(TopicNames.Agenda);
-          void changeSelectedTopic(TopicNames topicNames) {
-            switch (topicNames) {
-              case TopicNames.Agenda:
-                break;
-              default:
-            }
+          if ([
+            TopicNames.Agenda,
+            TopicNames.Beauty,
+            TopicNames.Sport,
+            TopicNames.Education
+          ].contains(TopicNames.values[topicIndex])) {
+            newDiaryViewModel.changeTopicColor(topicIndex);
+            print(newDiaryViewModel.selectedTopics);
           }
         },
         child: Container(
@@ -52,7 +56,9 @@ class DiaryTopicsContainer extends StatelessWidget {
                   topicIcon,
                   color: topicColor,
                 ),
-                Text(topicText)
+                Text(
+                  topicText,
+                ),
               ],
             ),
           ),
