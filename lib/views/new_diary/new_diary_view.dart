@@ -76,9 +76,9 @@ class NewDiary extends StatelessWidget {
               Column(
                 children: [
                   SizedBox(
-                    height: size.height / 2.4,
                     width: size.width,
                     child: const TextField(
+                      cursorColor: CustomColors.primaryPurple,
                       maxLength: 404,
                       maxLines: 10,
                       textInputAction: TextInputAction.done,
@@ -89,15 +89,14 @@ class NewDiary extends StatelessWidget {
                               color: CustomColors.primaryPurple, fontSize: 15)),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.photo_library_outlined),
-                      const SizedBox(width: 5),
-                      Icon(Icons.list)
-                    ],
-                  )
                 ],
-              )
+              ),
+              DiaryTopicsContainer(
+                topicColor: Colors.red,
+                topicIcon: Icons.list_rounded,
+                topicText: "Gündem",
+                topicIndex: TopicNames.Agenda.index,
+              ),
             ],
           ),
         ),
