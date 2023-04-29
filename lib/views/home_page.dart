@@ -1,130 +1,55 @@
 import 'package:dia/constant/constants.dart';
+import 'package:dia/views/daily_routine.dart';
+import 'package:dia/views/new_diary/new_diary_view.dart';
 import 'package:dia/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: Icon(Icons.camera_alt),
+        title: Text(
+          'Routine',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.send),
+            onPressed: () {},
+          ),
+        ],
+      ),
       bottomNavigationBar: NavBar(),
       body: SafeArea(
-        child: Column(
-          children: const <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              child: DiaryHeadline(),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12),
-              child: Text(
-                "Merhaba bugün cilt bakımım için yaptığım rutinde 44.gündeyim yüzümün yeni hali ekte. Kullandığım ürün xx. Gerçekten hepinize tavsitye ederim sorularınız varsa muhakkak yorumlarda sorun süreci tamamen görmek istiyorsnaız profilime girmeniz yeterli...",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 14),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0),
+                child: DiaryTopicList(),
               ),
-            ),
-            DiaryBotline(),
-            Divider()
-          ],
+              ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return const DailyRoutine();
+                  },
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 10),
+                  itemCount: 12)
+            ],
+          ),
         ),
       ),
-    );
-  }
-}
-
-class DiaryBotline extends StatelessWidget {
-  const DiaryBotline({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.mode_comment_outlined),
-              style: ButtonStyle(),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.favorite_border),
-              style: ButtonStyle(),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.bookmark_border_outlined),
-              style: ButtonStyle(),
-            ),
-          ],
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.more_vert_rounded),
-          style: ButtonStyle(),
-        ),
-      ],
-    );
-  }
-}
-
-class DiaryHeadline extends StatelessWidget {
-  const DiaryHeadline({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const CircleAvatar(
-                radius: 20,
-                backgroundImage: NetworkImage(
-                    "https://xsgames.co/randomusers/assets/avatars/pixel/6.jpg")),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 2),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "İbrahim Aktaş",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  Text(
-                    "@ibrahim",
-                    style: TextStyle(
-                        color: CustomColors.primaryGrey,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-        const Text(
-          "21 Nisan 2023",
-          style: TextStyle(
-            color: CustomColors.primaryGrey,
-            fontSize: 11,
-            fontWeight: FontWeight.w400,
-          ),
-        )
-      ],
     );
   }
 }

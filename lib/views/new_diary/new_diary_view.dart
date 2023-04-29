@@ -38,41 +38,7 @@ class NewDiary extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 18),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: SizedBox(
-                  height: 34,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      DiaryTopicsContainer(
-                        topicColor: Colors.red,
-                        topicIcon: Icons.list_rounded,
-                        topicText: "Gündem",
-                        topicIndex: TopicNames.Agenda.index,
-                      ),
-                      DiaryTopicsContainer(
-                        topicColor: Colors.green.shade700,
-                        topicIcon: Icons.face,
-                        topicText: "Bakım",
-                        topicIndex: TopicNames.Beauty.index,
-                      ),
-                      DiaryTopicsContainer(
-                        topicColor: Colors.orange.shade800,
-                        topicIcon: Icons.sports_basketball,
-                        topicText: "Spor",
-                        topicIndex: TopicNames.Sport.index,
-                      ),
-                      DiaryTopicsContainer(
-                        topicColor: Colors.blue.shade800,
-                        topicIcon: Icons.book,
-                        topicText: "Eğitim",
-                        topicIndex: TopicNames.Education.index,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              DiaryTopicList(),
               Column(
                 children: [
                   SizedBox(
@@ -99,6 +65,51 @@ class NewDiary extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class DiaryTopicList extends StatelessWidget {
+  const DiaryTopicList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: SizedBox(
+        height: 34,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            DiaryTopicsContainer(
+              topicColor: Colors.red,
+              topicIcon: Icons.list_rounded,
+              topicText: "Gündem",
+              topicIndex: TopicNames.Agenda.index,
+            ),
+            DiaryTopicsContainer(
+              topicColor: Colors.green.shade700,
+              topicIcon: Icons.face,
+              topicText: "Bakım",
+              topicIndex: TopicNames.Beauty.index,
+            ),
+            DiaryTopicsContainer(
+              topicColor: Colors.orange.shade800,
+              topicIcon: Icons.sports_basketball,
+              topicText: "Spor",
+              topicIndex: TopicNames.Sport.index,
+            ),
+            DiaryTopicsContainer(
+              topicColor: Colors.blue.shade800,
+              topicIcon: Icons.book,
+              topicText: "Eğitim",
+              topicIndex: TopicNames.Education.index,
+            ),
+          ],
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dia/constant/constants.dart';
 import 'package:dia/model/user_model.dart';
 import 'package:dia/view_model/user_inputs.dart';
+import 'package:dia/views/home_page.dart';
 import 'package:dia/views/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
