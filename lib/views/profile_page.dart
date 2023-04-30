@@ -1,4 +1,5 @@
 import 'package:dia/constant/constants.dart';
+import 'package:dia/view_model/navbar_viewmodels.dart';
 import 'package:dia/view_model/user_inputs.dart';
 import 'package:dia/views/new_diary/new_diary_view.dart';
 import 'package:dia/widgets/custom_bordered_button.dart';
@@ -7,6 +8,9 @@ import 'package:dia/widgets/profile_stats.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import '../widgets/floataction_button.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -14,18 +18,11 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final navBarModel = Provider.of<NavBarViewModel>(context);
     return Scaffold(
-      bottomNavigationBar: NavBar(),
+      bottomNavigationBar: NavBar(navBarModel: navBarModel, iconList: iconList),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Get.to(() => const NewDiary(), transition: Transition.fadeIn);
-          },
-          backgroundColor: CustomColors.primaryPurple,
-          child: const Text(
-            "+",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),
-          )),
+      floatingActionButton: const FloatActionButton(),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

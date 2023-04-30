@@ -2,18 +2,121 @@ import 'package:dia/constant/custom_colors.dart';
 import 'package:dia/constant/enums.dart';
 import 'package:dia/constant/extension/icon_extension.dart';
 import 'package:dia/view_model/navbar_viewmodels.dart';
+import 'package:dia/views/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class NavBar extends StatelessWidget {
-  NavBar({
+  const NavBar({
     super.key,
+    required this.navBarModel,
+    required this.iconList,
   });
 
+  final NavBarViewModel navBarModel;
+  final List<IconData> iconList;
+
+  @override
   Widget build(BuildContext context) {
-    final navBarModel = Provider.of<NavBarViewModel>(context);
-    final size = MediaQuery.of(context).size;
     return Container(
+      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 5,
+            offset: const Offset(0, 10),
+            spreadRadius: 10)
+      ]),
+      child: BottomAppBar(
+        color: Colors.white,
+        shape: CircularNotchedRectangle(),
+        height: 75,
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                NavbarIcon(
+                  navBarModel: navBarModel,
+                  iconList: iconList,
+                  index: 0,
+                ),
+                NavbarIcon(
+                    navBarModel: navBarModel, iconList: iconList, index: 1),
+                const SizedBox(),
+                NavbarIcon(
+                    navBarModel: navBarModel, iconList: iconList, index: 2),
+                NavbarIcon(
+                    navBarModel: navBarModel, iconList: iconList, index: 3),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+List<IconData> iconList = [
+  Icons.home,
+  Icons.search,
+  Icons.chat_bubble_outline_outlined,
+  Icons.person
+];
+
+class NavbarIcon extends StatelessWidget {
+  NavbarIcon({
+    super.key,
+    required this.navBarModel,
+    required this.iconList,
+    required this.index,
+  });
+
+  final NavBarViewModel navBarModel;
+  final List<IconData> iconList;
+  int index;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        navBarModel.changeIndex(index);
+        switch (navBarModel.selectionIndex) {
+          case 0:
+            Get.to(() => const HomePage(), transition: Transition.fadeIn);
+            break;
+          case 3:
+            Get.to(() => const HomePage(), transition: Transition.fadeIn);
+            break;
+          default:
+        }
+      },
+      child: Icon(
+        iconList[index],
+        size: 31,
+        color: navBarModel.selectionIndex == index
+            ? CustomColors.primaryPurple
+            : CustomColors.primaryGrey,
+      ),
+    );
+  }
+}
+
+
+
+/**
+ * 
+ * 
+
+ * 
+ * 
+ * 
+ */
+
+
+/*
+
+Container(
         padding: EdgeInsets.symmetric(horizontal: 16),
         height: size.height * 0.1,
         width: MediaQuery.of(context).size.width,
@@ -65,12 +168,7 @@ class NavBar extends StatelessWidget {
             );
           },
         ));
-  }
 
-  List<IconData> iconList = [
-    Icons.home,
-    Icons.search,
-    Icons.chat_bubble_outline_outlined,
-    Icons.person
-  ];
-}
+
+
+ */

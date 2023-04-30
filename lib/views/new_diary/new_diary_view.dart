@@ -21,12 +21,17 @@ class NewDiary extends StatelessWidget {
             children: <Widget>[
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const <Widget>[
-                    Icon(
-                      Icons.arrow_back,
-                      color: CustomColors.primaryPurple,
+                  children: <Widget>[
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: CustomColors.primaryPurple,
+                      ),
                     ),
-                    CustomBordererdButton(
+                    const CustomBordererdButton(
                       buttonText: "Oluştur",
                     )
                   ]),
@@ -38,30 +43,23 @@ class NewDiary extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 18),
               ),
-              DiaryTopicList(),
+              const DiaryTopicList(),
               Column(
                 children: [
                   SizedBox(
                     width: size.width,
                     child: const TextField(
                       cursorColor: CustomColors.primaryPurple,
-                      maxLength: 404,
                       maxLines: 10,
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Gündem için bugün neler yazacaksın ? ",
+                          hintText: "Yeni bir rutin için metin yaz ",
                           hintStyle: TextStyle(
                               color: CustomColors.primaryPurple, fontSize: 15)),
                     ),
                   ),
                 ],
-              ),
-              DiaryTopicsContainer(
-                topicColor: Colors.red,
-                topicIcon: Icons.list_rounded,
-                topicText: "Gündem",
-                topicIndex: TopicNames.Agenda.index,
               ),
             ],
           ),
