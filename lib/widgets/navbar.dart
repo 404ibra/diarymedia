@@ -3,6 +3,7 @@ import 'package:dia/constant/enums.dart';
 import 'package:dia/constant/extension/icon_extension.dart';
 import 'package:dia/view_model/navbar_viewmodels.dart';
 import 'package:dia/views/home_page.dart';
+import 'package:dia/views/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -78,17 +79,14 @@ class NavbarIcon extends StatelessWidget {
   int index;
   @override
   Widget build(BuildContext context) {
+    final navBarModel = Provider.of<NavBarViewModel>(context);
     return InkWell(
       onTap: () {
         navBarModel.changeIndex(index);
-        switch (navBarModel.selectionIndex) {
-          case 0:
-            Get.to(() => const HomePage(), transition: Transition.fadeIn);
-            break;
-          case 3:
-            Get.to(() => const HomePage(), transition: Transition.fadeIn);
-            break;
-          default:
+        if (navBarModel.selectionIndex == 0) {
+          Get.to(() => const HomePage(), transition: Transition.native);
+        } else if (navBarModel.selectionIndex == 3) {
+          Get.to(() => const ProfilePage(), transition: Transition.native);
         }
       },
       child: Icon(
