@@ -3,6 +3,7 @@ import 'package:dia/constant/custom_colors.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
 import 'package:dia/widgets/custom_bordered_button.dart';
 import 'package:dia/widgets/diary_topics_container.dart';
+import 'package:dia/widgets/routine_card.dart';
 import 'package:flutter/material.dart';
 
 class NewDiary extends StatelessWidget {
@@ -43,39 +44,41 @@ class NewDiary extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 18),
               ),
+//Color(0xfffe7d1d5
+//"assets/images/wash_face_img.png"
 
-              Container(
-                height: size.height / 4,
-                width: size.width / 2,
-                decoration: BoxDecoration(
-                    image: const DecorationImage(
-                        opacity: 0.89,
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/wash_face_img.png")),
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(
-                        width: 0.2, color: CustomColors.primaryPurple),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: CustomColors.primaryPurple,
-                          blurRadius: 0.1,
-                          spreadRadius: 0.5,
-                          blurStyle: BlurStyle.outer)
-                    ]),
-                child: const Align(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: Text(
-                      "Bakım Rutini",
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xfffe7d1d5)),
-                    ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: SizedBox(
+                  height: size.height / 3.7,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      RoutineCard(
+                          size: size,
+                          backgroundImage: "assets/images/wash_face_img.png",
+                          textColor: Color(0xfffe7d1d5),
+                          routineText: "Bakım Rutini"),
+                      RoutineCard(
+                          size: size,
+                          backgroundImage: "assets/images/wash_face_img.png",
+                          textColor: Color(0xfffe7d1d5),
+                          routineText: "Bakım Rutini"),
+                      RoutineCard(
+                          size: size,
+                          backgroundImage: "assets/images/wash_face_img.png",
+                          textColor: Color(0xfffe7d1d5),
+                          routineText: "Bakım Rutini"),
+                      RoutineCard(
+                          size: size,
+                          backgroundImage: "assets/images/wash_face_img.png",
+                          textColor: Color(0xfffe7d1d5),
+                          routineText: "Bakım Rutini"),
+                    ],
                   ),
                 ),
               ),
+
               //Text next page;
               Column(
                 children: [
