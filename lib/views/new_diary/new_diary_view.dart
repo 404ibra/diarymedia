@@ -43,7 +43,40 @@ class NewDiary extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     fontSize: 18),
               ),
-              const DiaryTopicList(),
+
+              Container(
+                height: size.height / 4,
+                width: size.width / 2,
+                decoration: BoxDecoration(
+                    image: const DecorationImage(
+                        opacity: 0.89,
+                        fit: BoxFit.cover,
+                        image: AssetImage("assets/images/wash_face_img.png")),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(
+                        width: 0.2, color: CustomColors.primaryPurple),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: CustomColors.primaryPurple,
+                          blurRadius: 0.1,
+                          spreadRadius: 0.5,
+                          blurStyle: BlurStyle.outer)
+                    ]),
+                child: const Align(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      "Bakım Rutini",
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xfffe7d1d5)),
+                    ),
+                  ),
+                ),
+              ),
+              //Text next page;
               Column(
                 children: [
                   SizedBox(
