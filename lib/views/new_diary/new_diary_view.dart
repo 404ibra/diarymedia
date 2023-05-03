@@ -52,8 +52,9 @@ class NewDiary extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: SizedBox(
-                    height: size.height * 0.8,
+                    height: size.height,
                     child: ListView.separated(
+                      shrinkWrap: true,
                       itemCount: CreateRoutineCard.bgImage.length,
                       separatorBuilder: (context, index) => const SizedBox(
                         height: 15,
@@ -61,32 +62,13 @@ class NewDiary extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return RoutineCard(
                             size: size,
+                            index: index,
                             backgroundImage: CreateRoutineCard.bgImage[index],
                             textColor: CreateRoutineCard.textColor[index],
                             routineText: CreateRoutineCard.text[index]);
                       },
                     ),
                   ),
-                ),
-
-                //Text next page;
-                Column(
-                  children: [
-                    SizedBox(
-                      width: size.width,
-                      child: const TextField(
-                        cursorColor: CustomColors.primaryPurple,
-                        maxLines: 10,
-                        textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Yeni bir rutin için metin yaz ",
-                            hintStyle: TextStyle(
-                                color: CustomColors.primaryPurple,
-                                fontSize: 15)),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

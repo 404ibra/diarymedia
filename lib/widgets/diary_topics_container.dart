@@ -29,7 +29,6 @@ class DiaryTopicsContainer extends StatelessWidget {
             TopicNames.Education
           ].contains(TopicNames.values[topicIndex])) {
             newDiaryViewModel.changeTopicColor(topicIndex);
-            print(newDiaryViewModel.selectedTopics);
           }
         },
         child: Container(
