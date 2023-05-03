@@ -1,5 +1,6 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/constant/custom_colors.dart';
+import 'package:dia/model/create_routine_model.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
 import 'package:dia/widgets/custom_bordered_button.dart';
 import 'package:dia/widgets/diary_topics_container.dart';
@@ -14,90 +15,81 @@ class NewDiary extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: CustomColors.primaryPurple,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: CustomColors.primaryPurple,
+                        ),
                       ),
-                    ),
-                    const CustomBordererdButton(
-                      buttonText: "Oluştur",
-                    )
-                  ]),
-              const SizedBox(height: 10),
-              const Text(
-                "24 Nisan Pzt",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18),
-              ),
-//Color(0xfffe7d1d5
-//"assets/images/wash_face_img.png"
+                      const CustomBordererdButton(
+                        buttonText: "Oluştur",
+                      )
+                    ]),
+                const SizedBox(height: 10),
+                const Text(
+                  "24 Nisan Pzt",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18),
+                ),
+                //Color(0xfffe7d1d5
+                //"assets/images/wash_face_img.png"
 
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: SizedBox(
-                  height: size.height / 3.7,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      RoutineCard(
-                          size: size,
-                          backgroundImage: "assets/images/wash_face_img.png",
-                          textColor: Color(0xfffe7d1d5),
-                          routineText: "Bakım Rutini"),
-                      RoutineCard(
-                          size: size,
-                          backgroundImage: "assets/images/books_img.jpeg",
-                          textColor: Color(0xfff5e312e),
-                          routineText: "Okuma Rutini"),
-                      RoutineCard(
-                          size: size,
-                          backgroundImage: "assets/images/education_img.jpeg",
-                          textColor: Colors.white,
-                          routineText: "Sınav Rutini"),
-                      RoutineCard(
-                          size: size,
-                          backgroundImage: "assets/images/fitness_img.jpeg",
-                          textColor: Colors.black,
-                          routineText: "Fitness Rutini"),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: SizedBox(
+                    height: size.height * 0.8,
+                    child: ListView.separated(
+                      itemCount: CreateRoutineCard.bgImage.length,
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 15,
+                      ),
+                      itemBuilder: (context, index) {
+                        return RoutineCard(
+                            size: size,
+                            backgroundImage: CreateRoutineCard.bgImage[index],
+                            textColor: CreateRoutineCard.textColor[index],
+                            routineText: CreateRoutineCard.text[index]);
+                      },
+                    ),
                   ),
                 ),
-              ),
 
-              //Text next page;
-              Column(
-                children: [
-                  SizedBox(
-                    width: size.width,
-                    child: const TextField(
-                      cursorColor: CustomColors.primaryPurple,
-                      maxLines: 10,
-                      textInputAction: TextInputAction.done,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Yeni bir rutin için metin yaz ",
-                          hintStyle: TextStyle(
-                              color: CustomColors.primaryPurple, fontSize: 15)),
+                //Text next page;
+                Column(
+                  children: [
+                    SizedBox(
+                      width: size.width,
+                      child: const TextField(
+                        cursorColor: CustomColors.primaryPurple,
+                        maxLines: 10,
+                        textInputAction: TextInputAction.done,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Yeni bir rutin için metin yaz ",
+                            hintStyle: TextStyle(
+                                color: CustomColors.primaryPurple,
+                                fontSize: 15)),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
