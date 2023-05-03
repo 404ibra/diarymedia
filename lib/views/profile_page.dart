@@ -84,7 +84,7 @@ class ProfilePage extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  const CustomBordererdButton(buttonText: "Düzenle")
+                  CustomBordererdButton(buttonText: "Düzenle")
                 ],
               ),
             ),
