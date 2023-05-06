@@ -44,7 +44,14 @@ class RoutineDetails extends StatelessWidget {
                 "Rutin için ilk detayları paylaş",
                 style: TextStyles.kTextStylePrimaryGrey,
               ),
-              TextField(),
+
+              //TO DO detaylandırılacak text field
+              const TextField(),
+
+              const Text(
+                "Rutin süresi",
+                style: TextStyles.kTextStylePrimaryGrey,
+              ),
             ],
           ),
         ),
