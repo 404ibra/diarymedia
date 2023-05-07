@@ -13,7 +13,7 @@ class TopicsContainerProivder extends ChangeNotifier {
   }
 
   void changeRoutineDates(DateTime newRoutineStart, DateTime newRoutineEnd) {
-    routineStart = newRoutineStart;
+    routineStart = DateTime.now();
     routineEnd = newRoutineEnd;
     notifyListeners();
   }

@@ -58,35 +58,61 @@ class RoutineDetails extends StatelessWidget {
                       border: InputBorder.none),
                 ),
 
-                InkWell(
-                  onTap: () {},
-                  child: SizedBox(
-                      height: 30,
-                      width: 20,
-                      child: Image.asset(
-                          "assets/icons/routine_details_add_photo.png")),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: SizedBox(
+                          height: 30,
+                          width: 20,
+                          child: Image.asset(
+                              "assets/icons/routine_details_add_photo.png")),
+                    ),
+                    const SizedBox(width: 8),
+                    InkWell(
+                      onTap: () {},
+                      child: SizedBox(
+                          height: 30,
+                          width: 25,
+                          child:
+                              Image.asset("assets/icons/routine_details.png")),
+                    ),
+                    const SizedBox(width: 8),
+                    InkWell(
+                      onTap: () {},
+                      child: SizedBox(
+                          height: 30,
+                          width: 22,
+                          child: Image.asset("assets/icons/location.png")),
+                    ),
+                  ],
                 ),
-                Text(
-                  "Rutin Süresi",
-                  style: TextStyles.kHeadlineTextStyle
-                      .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
+                const Divider(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 8),
+                  child: Text(
+                    "Rutin Tarihleri",
+                    style: TextStyles.kHeadlineTextStyle
+                        .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
                 ),
                 CalendarDatePicker2(
                   config: CalendarDatePicker2Config(
-                    firstDate: DateTime(2023, 1, 1),
+                    selectedDayHighlightColor:
+                        CustomColors.primaryPurple.withOpacity(0.6),
+                    firstDate: DateTime.now(),
                     calendarType: CalendarDatePicker2Type.range,
                   ),
                   value: [
-                    routineDetailsVM.routineStart,
-                    routineDetailsVM.routineEnd
+                    routineDetailsVM.routineStart ?? null,
+                    routineDetailsVM.routineEnd ?? null
                   ],
                   onValueChanged: (dates) {
                     if (dates.length == 2) {
                       routineDetailsVM.changeRoutineDates(dates[0]!, dates[1]!);
-
-                      print(routineDetailsVM.routineStart);
-
-                      print(routineDetailsVM.routineEnd);
+                      Duration diff = routineDetailsVM.routineEnd
+                          .difference(routineDetailsVM.routineStart);
+                      print(diff.inDays + 1);
                     }
                   },
                 )
