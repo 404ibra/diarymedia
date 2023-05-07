@@ -41,7 +41,7 @@ class RoutineCard extends StatelessWidget {
                   fit: BoxFit.cover,
                   image: AssetImage(backgroundImage)),
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(width: 0.2, color: CustomColors.primaryPurple),
+              border: Border.all(width: 0.2, color: textColor),
               boxShadow: const [
                 BoxShadow(
                     color: CustomColors.primaryPurple,

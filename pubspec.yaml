@@ -36,6 +36,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   image_picker: ^0.8.7+3
+  calendar_date_picker2: ^0.5.2
+
   # firebase service
   firebase_core: 
   firebase_auth: 
@@ -74,6 +76,7 @@ flutter:
   assets:
     - assets/lang/
     - assets/images/
+    - assets/icons/
 
   #   - images/a_dot_ham.jpeg
 
