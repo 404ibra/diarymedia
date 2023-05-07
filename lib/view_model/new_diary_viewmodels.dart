@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 enum TopicNames<Int> { Agenda, Beauty, Sport, Education }
 
 class TopicsContainerProivder extends ChangeNotifier {
-  late DateTime routineStart;
-  late DateTime routineEnd;
+  DateTime? routineStart;
+  DateTime? routineEnd;
 
   int selectedIndex = -1;
   void changeTopicColor(int index) {
