@@ -1,8 +1,10 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:dia/constant/constants.dart';
+import 'package:dia/view_model/new_diary_viewmodels.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/custom_bordered_button.dart';
 
@@ -13,6 +15,7 @@ class RoutineDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final routineDetailsVM = Provider.of<TopicsContainerProivder>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -73,11 +76,17 @@ class RoutineDetails extends StatelessWidget {
                     firstDate: DateTime(2023, 1, 1),
                     calendarType: CalendarDatePicker2Type.range,
                   ),
-                  value: [],
+                  value: [
+                    routineDetailsVM.routineStart,
+                    routineDetailsVM.routineEnd
+                  ],
                   onValueChanged: (dates) {
                     if (dates.length == 2) {
-                      print(dates[0]);
-                      print(dates[1]);
+                      routineDetailsVM.changeRoutineDates(dates[0]!, dates[1]!);
+
+                      print(routineDetailsVM.routineStart);
+
+                      print(routineDetailsVM.routineEnd);
                     }
                   },
                 )
