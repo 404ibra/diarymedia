@@ -41,7 +41,7 @@ class RoutineDetails extends StatelessWidget {
                       CustomBordererdButton(
                         buttonText: "Oluştur",
                         onTap: () {
-                          Get.to(() => const ProfilePage(),
+                          Get.to(() => ProfilePage(),
                               transition: Transition.fadeIn);
                         },
                       )

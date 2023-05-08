@@ -1,20 +1,18 @@
+import 'package:dia/view_model/profile_view_model.dart';
 import 'package:dia/widgets/profile_details_rff.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../constant/constants.dart';
 
 class ProfileInformationSection extends StatelessWidget {
-  const ProfileInformationSection({
-    super.key,
-    required this.size,
-  });
-
-  final Size size;
+  ProfileInformationSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final profileVM = Provider.of<ProfileViewModel>(context);
     return Container(
-      height: size.height * 0.45,
+      height: profileVM.currentHeight,
       decoration: const BoxDecoration(
           color: Color(0xffffafcfe),
           borderRadius: BorderRadius.only(

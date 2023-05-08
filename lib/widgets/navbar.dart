@@ -86,7 +86,7 @@ class NavbarIcon extends StatelessWidget {
         if (navBarModel.selectionIndex == 0) {
           Get.to(() => const HomePage(), transition: Transition.native);
         } else if (navBarModel.selectionIndex == 3) {
-          Get.to(() => const ProfilePage(), transition: Transition.native);
+          Get.to(() => ProfilePage(), transition: Transition.native);
         }
       },
       child: Icon(
