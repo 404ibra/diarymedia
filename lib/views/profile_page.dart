@@ -47,6 +47,9 @@ class ProfilePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 ProfileInformationSection(),
+                const SizedBox(
+                  height: 55,
+                ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -85,6 +88,34 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ScrollTextUnderline extends StatelessWidget {
+  const ScrollTextUnderline({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(
+        bottom: 3, // Space between underline and text
+      ),
+      decoration: const BoxDecoration(
+          border: Border(
+              bottom: BorderSide(
+        color: CustomColors.profileSecondoryColor,
+        width: 1.0, // Underline thickness
+      ))),
+      child: const Text(
+        "Rutinler",
+        style: TextStyle(
+            color: CustomColors.profilePrimaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.bold),
       ),
     );
   }

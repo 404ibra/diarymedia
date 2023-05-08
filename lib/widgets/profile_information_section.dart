@@ -15,11 +15,14 @@ class ProfileInformationSection extends StatelessWidget {
       duration: Duration(milliseconds: 1200),
       curve: Curves.ease,
       height: profileVM.currentHeight,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           color: Color(0xffffafcfe),
-          borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(15),
-              bottomLeft: Radius.circular(15))),
+          borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(30),
+              bottomLeft: Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 10)
+          ]),
       child: profileVM.animatedStarted == false
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +81,7 @@ class ProfileInformationSection extends StatelessWidget {
                             )
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 )
