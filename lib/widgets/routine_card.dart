@@ -51,18 +51,22 @@ class RoutineCard extends StatelessWidget {
                     spreadRadius: 0.1,
                     blurStyle: BlurStyle.outer)
               ]),
-          child: Align(
-            alignment: AlignmentDirectional.bottomCenter,
+          child: AnimatedAlign(
+            alignment: cardViewModel.selectedIndex == index
+                ? AlignmentDirectional.center
+                : AlignmentDirectional.bottomCenter,
+            duration: const Duration(milliseconds: 110),
             child: Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: AnimatedOpacity(
                   duration: const Duration(milliseconds: 250),
-                  opacity: cardViewModel.selectedIndex == index ? 1.0 : 0,
+                  opacity: cardViewModel.selectedIndex == index ? 0.7 : 0,
                   child: Text(routineText,
                       style: const TextStyle(
+                        color: Colors.white,
                         letterSpacing: 1,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 60,
+                        fontWeight: FontWeight.w600,
                       )),
                 )),
           ),

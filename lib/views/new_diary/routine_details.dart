@@ -1,9 +1,8 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:dia/constant/constants.dart';
+import 'package:dia/model/create_routine_model.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
-import 'package:dia/views/new_diary/routine_props.dart';
 import 'package:dia/views/profile_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -41,14 +40,14 @@ class RoutineDetails extends StatelessWidget {
                       CustomBordererdButton(
                         buttonText: "Oluştur",
                         onTap: () {
-                          Get.to(() => ProfilePage(),
+                          Get.to(() => const ProfilePage(),
                               transition: Transition.fadeIn);
                         },
                       )
                     ]),
                 const SizedBox(height: 15),
                 Text(
-                  "Yeni Bir Okuma Rutini Oluştur",
+                  "Yeni Bir ${CreateRoutineCard.text[index].toLowerCase().capitalizeFirst} Rutini Oluştur",
                   style: TextStyles.kHeadlineTextStyle.copyWith(fontSize: 20),
                 ),
 

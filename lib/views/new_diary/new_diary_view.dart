@@ -59,7 +59,13 @@ class NewDiary extends StatelessWidget {
                 ),
                 //Color(0xfffe7d1d5
                 //"assets/images/wash_face_img.png"
-
+                const Text(
+                  "İstedğin konuda mükemmeleşmenin yarısını tamamladın sayılır, mükemmelleşmek istediğin başlığı seç ve devam et",
+                  style: TextStyle(
+                      color: CustomColors.profileSecondoryColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: ListView.separated(
