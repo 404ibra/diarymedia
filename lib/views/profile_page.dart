@@ -10,7 +10,6 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final profileVM = Provider.of<ProfileViewModel>(context);
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -34,8 +33,10 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: Color(0xfffedf3fa),
       body: NotificationListener<ScrollNotification>(
         onNotification: (notification) {
-          if (notification.metrics.pixels > 250) {
-            profileVM.changeInformationHeight(0);
+          if (notification.metrics.pixels > 60) {
+            profileVM.changeInformationHeight(0, true);
+          } else if (notification.metrics.pixels < -60) {
+            profileVM.changeInformationHeight(350, false);
           }
           return true;
         },
@@ -50,7 +51,7 @@ class ProfilePage extends StatelessWidget {
                   color: Colors.red,
                 ),
                 Container(
-                  height: 120,
+                  height: 300,
                   width: 50,
                   color: Colors.green,
                 ),
