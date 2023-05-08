@@ -17,6 +17,8 @@ class NewDiary extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final routineCardVM = Provider.of<TopicsContainerProivder>(context);
+    DateTime todayDate = DateTime.now();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -48,9 +50,9 @@ class NewDiary extends StatelessWidget {
                       )
                     ]),
                 const SizedBox(height: 10),
-                const Text(
-                  "24 Nisan Pzt",
-                  style: TextStyle(
+                Text(
+                  "${todayDate.day.toString()} Mayıs Pzt",
+                  style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w600,
                       fontSize: 18),
@@ -60,23 +62,21 @@ class NewDiary extends StatelessWidget {
 
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: SizedBox(
-                    height: size.height,
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      itemCount: CreateRoutineCard.bgImage.length,
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 15,
-                      ),
-                      itemBuilder: (context, index) {
-                        return RoutineCard(
-                            size: size,
-                            index: index,
-                            backgroundImage: CreateRoutineCard.bgImage[index],
-                            textColor: CreateRoutineCard.textColor[index],
-                            routineText: CreateRoutineCard.text[index]);
-                      },
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: CreateRoutineCard.bgImage.length,
+                    separatorBuilder: (context, index) => const SizedBox(
+                      height: 15,
                     ),
+                    itemBuilder: (context, index) {
+                      return RoutineCard(
+                          size: size,
+                          index: index,
+                          backgroundImage: CreateRoutineCard.bgImage[index],
+                          textColor: CreateRoutineCard.textColor[index],
+                          routineText: CreateRoutineCard.text[index]);
+                    },
                   ),
                 ),
               ],

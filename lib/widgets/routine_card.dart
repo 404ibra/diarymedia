@@ -41,29 +41,30 @@ class RoutineCard extends StatelessWidget {
                   fit: BoxFit.cover,
                   image: AssetImage(backgroundImage)),
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(width: 0.2, color: textColor),
+              border: Border.all(
+                  width: 0.1,
+                  color: CustomColors.profilePrimaryColor.withOpacity(0.1)),
               boxShadow: const [
                 BoxShadow(
-                    color: CustomColors.primaryPurple,
-                    blurRadius: 0.1,
-                    spreadRadius: 0.5,
+                    color: CustomColors.profilePrimaryColor,
+                    blurRadius: 2,
+                    spreadRadius: 0.1,
                     blurStyle: BlurStyle.outer)
               ]),
           child: Align(
-            alignment: cardViewModel.selectedIndex == index
-                ? Alignment.center
-                : AlignmentDirectional.bottomCenter,
+            alignment: AlignmentDirectional.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: cardViewModel.selectedIndex == index ||
-                      cardViewModel.selectedIndex == -1
-                  ? Text(routineText,
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700,
-                          color: textColor))
-                  : null,
-            ),
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 250),
+                  opacity: cardViewModel.selectedIndex == index ? 1.0 : 0,
+                  child: Text(routineText,
+                      style: const TextStyle(
+                        letterSpacing: 1,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                      )),
+                )),
           ),
         ),
       ),

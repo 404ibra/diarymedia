@@ -6,6 +6,7 @@ import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/profile_view_model.dart';
 import 'package:dia/view_model/sign_in_checkbox.dart';
 import 'package:dia/views/home_page.dart';
+import 'package:dia/views/new_diary/new_diary_view.dart';
 import 'package:dia/views/profile_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           primaryColor: CustomColors.primaryPurple),
-      home: ProfilePage(),
+      home: NewDiary(),
     );
   }
 }

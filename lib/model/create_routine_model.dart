@@ -15,10 +15,5 @@ class CreateRoutineCard {
     Colors.black
   ];
 
-  static List<String> text = [
-    "Bakım Rutini",
-    "Okuma Rutini",
-    "Sınav Rutini",
-    "Fitness Rutini"
-  ];
+  static List<String> text = ["BAKIM", "OKUMA", "SINAV", "FITNESS"];
 }
