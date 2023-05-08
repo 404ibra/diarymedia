@@ -9,6 +9,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final profileVM = Provider.of<ProfileViewModel>(context);
     return Scaffold(
       appBar: AppBar(
@@ -43,28 +44,43 @@ class ProfilePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: SafeArea(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 ProfileInformationSection(),
-                Container(
-                  height: 120,
-                  width: 50,
-                  color: Colors.red,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: size.height * 0.48,
+                      width: size.width * 0.6,
+                      color: Colors.red,
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          height: size.height * 0.240,
+                          width: size.width * 0.4,
+                          color: Colors.green,
+                        ),
+                        Container(
+                          height: size.height * 0.240,
+                          width: size.width * 0.4,
+                          color: Colors.pink,
+                        )
+                      ],
+                    ),
+                  ],
                 ),
                 Container(
-                  height: 300,
-                  width: 50,
-                  color: Colors.green,
+                  height: size.height * 0.240,
+                  width: size.width,
+                  color: Colors.orangeAccent,
                 ),
                 Container(
-                  height: 120,
-                  width: 50,
-                  color: Colors.pink,
-                ),
-                Container(
-                  height: 120,
-                  width: 50,
-                  color: Colors.red,
-                ),
+                  height: size.height * 0.240,
+                  width: size.width,
+                  color: Colors.blueGrey,
+                )
               ],
             ),
           ),
