@@ -12,4 +12,16 @@ class TextStyles {
       TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold);
   static const TextStyle largeElevatedButtonText =
       TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600);
+  static const TextStyle profileMainStyle = TextStyle(
+      fontSize: 26, color: Color(0xfff455a75), fontWeight: FontWeight.bold);
+  static const TextStyle rffHeadlineStyle = TextStyle(
+      color: CustomColors.profileSecondoryColor,
+      fontSize: 18,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 0.5);
+  static const TextStyle rffNumberStyle = TextStyle(
+    color: CustomColors.profilePrimaryColor,
+    fontSize: 18.5,
+    fontWeight: FontWeight.bold,
+  );
 }

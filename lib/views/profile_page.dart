@@ -1,16 +1,7 @@
-import 'package:dia/constant/constants.dart';
-import 'package:dia/view_model/navbar_viewmodels.dart';
-import 'package:dia/view_model/user_inputs.dart';
-import 'package:dia/views/new_diary/new_diary_view.dart';
-import 'package:dia/widgets/custom_bordered_button.dart';
-import 'package:dia/widgets/navbar.dart';
-import 'package:dia/widgets/profile_stats.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
+import 'dart:io';
 
-import '../widgets/floataction_button.dart';
+import 'package:dia/constant/constants.dart';
+import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -18,86 +9,107 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final navBarModel = Provider.of<NavBarViewModel>(context);
     return Scaffold(
-      bottomNavigationBar: NavBar(navBarModel: navBarModel, iconList: iconList),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: const FloatActionButton(),
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 30,
+        backgroundColor: Color(0xffffafcfe),
+      ),
+      backgroundColor: Color(0xfffedf3fa),
       body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              alignment: Alignment.bottomLeft,
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      height: size.height / 6,
-                      width: size.width,
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: FractionalOffset(0.0, 0.0),
-                              end: FractionalOffset(1.0, 0.0),
-                              stops: [
-                            0.0,
-                            .75
-                          ],
-                              colors: [
-                            Color.fromARGB(255, 87, 81, 255),
-                            CustomColors.primaryPurple,
-                          ])),
-                    ),
-                    Container(
-                      height: 20,
-                      width: size.width,
-                      color: Colors.white,
-                    )
-                  ],
-                ),
-                const Padding(
-                  padding: CustomPaddings.kHorizontalPadding,
-                  child: CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage(
-                          "https://xsgames.co/randomusers/assets/avatars/pixel/6.jpg")),
-                ),
-              ],
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-              child: Row(
+          children: <Widget>[
+            Container(
+              height: size.height * 0.52,
+              decoration: const BoxDecoration(
+                  color: Color(0xffffafcfe),
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(15))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const <Widget>[
-                      Text(
-                        "İbrahim Aktaş",
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
-                      Text(
-                        "@ibra",
-                        style: TextStyle(
-                            color: CustomColors.primaryGrey, fontSize: 16),
-                      ),
-                    ],
+                  const Padding(
+                    padding: CustomPaddings.kHorizontalPadding,
+                    child: Text(
+                      "Profilim",
+                      style: TextStyles.profileMainStyle,
+                    ),
                   ),
-                  const Spacer(),
-                  CustomBordererdButton(buttonText: "Düzenle")
+                  Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 18),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 17.0),
+                          child: CircleAvatar(
+                            radius: 45,
+                            backgroundImage:
+                                AssetImage("assets/images/wash_face_img.png"),
+                          ),
+                        ),
+                        Text(
+                          "Jeniffer Gryhandell",
+                          style: TextStyles.profileMainStyle.copyWith(
+                              fontSize: 20, fontWeight: FontWeight.w600),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8.0, bottom: 50),
+                          child: Text(
+                            "Reder, Fitness, Nutrion",
+                            style: TextStyle(
+                                color: Color(0xfffafb8cb),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15),
+                          ),
+                        ),
+                        Padding(
+                          padding: CustomPaddings.kHorizontalPadding,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              ProfileDetailsRFF(
+                                headline: "Rutinler",
+                                number: "4",
+                              ),
+                              ProfileDetailsRFF(
+                                headline: "Takipler",
+                                number: "124",
+                              ),
+                              ProfileDetailsRFF(
+                                headline: "Takipçi",
+                                number: "3213",
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-              child: ProfileStats(),
-            ),
-            const Divider(
-              thickness: 1.2,
             )
           ],
         ),
       ),
+    );
+  }
+}
+
+//RFF Mean is Routine Follower Follows
+class ProfileDetailsRFF extends StatelessWidget {
+  ProfileDetailsRFF({super.key, required this.headline, required this.number});
+
+  String headline;
+  String number;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(headline, style: TextStyles.rffHeadlineStyle),
+        Text(number, style: TextStyles.rffNumberStyle)
+      ],
     );
   }
 }

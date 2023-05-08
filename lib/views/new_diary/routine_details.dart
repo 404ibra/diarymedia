@@ -2,6 +2,7 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:dia/constant/constants.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
 import 'package:dia/views/new_diary/routine_props.dart';
+import 'package:dia/views/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,9 +39,9 @@ class RoutineDetails extends StatelessWidget {
                         ),
                       ),
                       CustomBordererdButton(
-                        buttonText: "Devam Et",
+                        buttonText: "Oluştur",
                         onTap: () {
-                          Get.to(() => const RoutineProps(),
+                          Get.to(() => const ProfilePage(),
                               transition: Transition.fadeIn);
                         },
                       )
