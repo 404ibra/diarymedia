@@ -1,19 +1,25 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dia/constant/constants.dart';
 import 'package:dia/model/create_routine_model.dart';
+import 'package:dia/model/routine_model.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
 import 'package:dia/views/profile_page.dart';
+import 'package:dia/widgets/routine_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../widgets/custom_bordered_button.dart';
 
 class RoutineDetails extends StatelessWidget {
   RoutineDetails({super.key, required this.index});
 
+  final _controller = TextEditingController();
   int index;
-
+  String UUID = Uuid().v1();
   @override
   Widget build(BuildContext context) {
     final routineDetailsVM = Provider.of<TopicsContainerProivder>(context);
@@ -39,9 +45,23 @@ class RoutineDetails extends StatelessWidget {
                       ),
                       CustomBordererdButton(
                         buttonText: "Oluştur",
-                        onTap: () {
+                        onTap: () async {
                           Get.to(() => const ProfilePage(),
                               transition: Transition.fadeIn);
+                          final routine = RoutineModel(
+                              routineId: UUID,
+                              uid: FirebaseAuth.instance.currentUser?.uid ??
+                                  "22",
+                              routineCategorie: CreateRoutineCard.text[index],
+                              routineStart: DateTime.now().toString(),
+                              routineEnd:
+                                  routineDetailsVM.routineEnd.toString(),
+                              routineContent: _controller.text);
+
+                          await FirebaseFirestore.instance
+                              .collection("Routines")
+                              .doc(UUID)
+                              .set(routine.toJson());
                         },
                       )
                     ]),
@@ -52,11 +72,12 @@ class RoutineDetails extends StatelessWidget {
                 ),
 
                 //TO DO detaylandırılacak text field
-                const TextField(
+                TextField(
+                  controller: _controller,
                   textInputAction: TextInputAction.newline,
                   maxLines: null,
                   maxLength: 300,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       hintText: "Oluşturacağın Rutin için detaylar ekle",
                       hintStyle: TextStyles.kTextStylePrimaryGrey,
                       border: InputBorder.none),
@@ -107,10 +128,7 @@ class RoutineDetails extends StatelessWidget {
                     firstDate: DateTime.now(),
                     calendarType: CalendarDatePicker2Type.range,
                   ),
-                  value: [
-                    routineDetailsVM.routineStart,
-                    routineDetailsVM.routineEnd
-                  ],
+                  value: [DateTime.now(), routineDetailsVM.routineEnd],
                   onValueChanged: (dates) {
                     if (dates.length == 2) {
                       routineDetailsVM.changeRoutineDates(dates[0]!, dates[1]!);
