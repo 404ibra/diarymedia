@@ -56,7 +56,19 @@ class ProfilePage extends StatelessWidget {
                     Container(
                       height: size.height * 0.48,
                       width: size.width * 0.6,
-                      color: Colors.red,
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 1,
+                                offset: Offset(0, -1))
+                          ],
+                          image: const DecorationImage(
+                              opacity: 0.75,
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                  "assets/images/wash_face_img.png"))),
                     ),
                     Column(
                       children: [
