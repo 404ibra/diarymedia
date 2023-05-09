@@ -75,13 +75,37 @@ class ProfilePage extends StatelessWidget {
                         Container(
                           height: size.height * 0.240,
                           width: size.width * 0.4,
-                          color: Colors.green,
+                          decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 1,
+                                    offset: Offset(0, -1))
+                              ],
+                              image: const DecorationImage(
+                                  opacity: 0.75,
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      "assets/images/fitness_img.jpeg"))),
                         ),
                         Container(
                           height: size.height * 0.240,
                           width: size.width * 0.4,
-                          color: Colors.pink,
-                        )
+                          decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 1,
+                                    offset: Offset(0, -1))
+                              ],
+                              image: const DecorationImage(
+                                  opacity: 0.75,
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      "assets/images/books_img.jpeg"))),
+                        ),
                       ],
                     ),
                   ],
@@ -89,13 +113,23 @@ class ProfilePage extends StatelessWidget {
                 Container(
                   height: size.height * 0.240,
                   width: size.width,
-                  color: Colors.orangeAccent,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          opacity: 0.75,
+                          fit: BoxFit.cover,
+                          image:
+                              AssetImage("assets/images/education_img.jpeg"))),
                 ),
                 Container(
                   height: size.height * 0.240,
                   width: size.width,
-                  color: Colors.blueGrey,
-                )
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          opacity: 0.75,
+                          fit: BoxFit.cover,
+                          image:
+                              AssetImage("assets/images/education_img.jpeg"))),
+                ),
               ],
             ),
           ),
