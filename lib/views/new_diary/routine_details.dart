@@ -10,6 +10,7 @@ import 'package:dia/view_model/new_routine_viewmodel.dart';
 import 'package:dia/views/profile_page.dart';
 import 'package:dia/widgets/routine_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -64,8 +65,19 @@ class RoutineDetails extends StatelessWidget {
                       CustomBordererdButton(
                         buttonText: "Oluştur",
                         onTap: () async {
-                          Get.to(() => const ProfilePage(),
-                              transition: Transition.fadeIn);
+                          final uploadRoutineCoverImage = await FirebaseStorage
+                              .instance
+                              .ref("RoutinesCoverPhotos")
+                              .child(UUID)
+                              .child(DateTime.now()
+                                  .millisecondsSinceEpoch
+                                  .toString())
+                              .putFile(
+                                  File(newRoutineVM.routineMainImagePath!));
+
+                          final routineImagePath = await uploadRoutineCoverImage
+                              .ref
+                              .getDownloadURL();
                           final routine = RoutineModel(
                               routineId: UUID,
                               uid: FirebaseAuth.instance.currentUser?.uid ??
@@ -74,12 +86,15 @@ class RoutineDetails extends StatelessWidget {
                               routineStart: DateTime.now().toString(),
                               routineEnd:
                                   routineDetailsVM.routineEnd.toString(),
-                              routineContent: _controller.text);
+                              routineContent: _controller.text,
+                              routineCoverImagePath: routineImagePath);
 
-                          await FirebaseFirestore.instance
+                          FirebaseFirestore.instance
                               .collection("Routines")
                               .doc(UUID)
                               .set(routine.toJson());
+                          Get.to(() => const ProfilePage(),
+                              transition: Transition.fadeIn);
                         },
                       )
                     ]),
@@ -88,8 +103,81 @@ class RoutineDetails extends StatelessWidget {
                   "Yeni Bir ${CreateRoutineCard.text[index].toLowerCase().capitalizeFirst} Rutini Oluştur",
                   style: TextStyles.kHeadlineTextStyle.copyWith(fontSize: 20),
                 ),
-
-                //TO DO detaylandırılacak text field
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 5),
+                  child: Text(
+                    "Rutin Kapağı",
+                    style: TextStyles.kHeadlineTextStyle
+                        .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Text(
+                  "Keşfet ve anasayfada rutininiz kapak fotoğrafı bu olacak",
+                  style:
+                      TextStyles.kTextStylePrimaryGrey.copyWith(fontSize: 14),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        addPhoto();
+                      },
+                      child: SizedBox(
+                          height: size.height / 2.4,
+                          width: size.width / 2,
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: newRoutineVM.routineMainImagePath == null
+                                    ? Image.asset(
+                                        "assets/images/books_img.jpeg",
+                                        opacity:
+                                            const AlwaysStoppedAnimation(.65),
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.file(
+                                        File(
+                                            newRoutineVM.routineMainImagePath!),
+                                        fit: BoxFit.cover,
+                                        opacity:
+                                            const AlwaysStoppedAnimation(0.95),
+                                      ),
+                              ),
+                              Center(
+                                child: ShaderMask(
+                                  shaderCallback: (bounds) =>
+                                      const LinearGradient(colors: [
+                                    Color(0xfffa7cdc8),
+                                    Color(0xfffaeb9ce),
+                                  ]).createShader(bounds),
+                                  child: newRoutineVM.selectedImagePath == false
+                                      ? Text(
+                                          "+",
+                                          style: TextStyle(
+                                              fontSize: 120,
+                                              color: Colors.white
+                                                  .withOpacity(0.95)),
+                                        )
+                                      : null,
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                  ),
+                ),
+                const Divider(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(
+                    "Rutin İçeriği",
+                    style: TextStyles.kHeadlineTextStyle
+                        .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+                ),
                 TextField(
                   controller: _controller,
                   textInputAction: TextInputAction.newline,
@@ -100,13 +188,10 @@ class RoutineDetails extends StatelessWidget {
                       hintStyle: TextStyles.kTextStylePrimaryGrey,
                       border: InputBorder.none),
                 ),
-
                 Row(
                   children: [
                     InkWell(
-                      onTap: () {
-                        addPhoto();
-                      },
+                      onTap: () {},
                       child: SizedBox(
                           height: 30,
                           width: 20,
@@ -133,66 +218,6 @@ class RoutineDetails extends StatelessWidget {
                   ],
                 ),
                 const Divider(),
-                Text(
-                  "Rutin Kapağı",
-                  style: TextStyles.kHeadlineTextStyle
-                      .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  "Keşfet ve anasayfada rutininiz kapak fotoğrafı bu olacak",
-                  style:
-                      TextStyles.kTextStylePrimaryGrey.copyWith(fontSize: 14),
-                ),
-
-                Center(
-                  child: InkWell(
-                    onTap: () {
-                      addPhoto();
-                    },
-                    child: SizedBox(
-                        height: size.height / 2.4,
-                        width: size.width / 2,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: newRoutineVM.routineMainImagePath == null
-                                  ? Image.asset(
-                                      "assets/images/books_img.jpeg",
-                                      opacity:
-                                          const AlwaysStoppedAnimation(.65),
-                                      fit: BoxFit.cover,
-                                    )
-                                  : Image.file(
-                                      File(newRoutineVM.routineMainImagePath!),
-                                      fit: BoxFit.cover,
-                                      opacity:
-                                          const AlwaysStoppedAnimation(0.95),
-                                    ),
-                            ),
-                            Center(
-                              child: ShaderMask(
-                                shaderCallback: (bounds) =>
-                                    const LinearGradient(colors: [
-                                  Color(0xfffa7cdc8),
-                                  Color(0xfffaeb9ce),
-                                ]).createShader(bounds),
-                                child: newRoutineVM.selectedImagePath == false
-                                    ? Text(
-                                        "+",
-                                        style: TextStyle(
-                                            fontSize: 120,
-                                            color:
-                                                Colors.white.withOpacity(0.95)),
-                                      )
-                                    : null,
-                              ),
-                            ),
-                          ],
-                        )),
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, bottom: 8),
                   child: Text(
@@ -203,8 +228,7 @@ class RoutineDetails extends StatelessWidget {
                 ),
                 CalendarDatePicker2(
                   config: CalendarDatePicker2Config(
-                    selectedDayHighlightColor:
-                        CustomColors.primaryPurple.withOpacity(0.6),
+                    selectedDayHighlightColor: Color(0xfffaeb9ce),
                     firstDate: DateTime.now(),
                     calendarType: CalendarDatePicker2Type.range,
                   ),

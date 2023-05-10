@@ -5,7 +5,8 @@
     "routine_categorie": "fitness",
     "routine_start": "23",
     "routine_end": "25",
-    "routine_content": "djskahdjkas"
+    "routine_content": "djskahdjkas",
+    "routine_cover_image_path": ""
 }
  */
 
@@ -16,6 +17,7 @@ class RoutineModel {
   String? routineStart;
   String? routineEnd;
   String? routineContent;
+  String? routineCoverImagePath;
 
   RoutineModel(
       {this.routineId,
@@ -23,7 +25,8 @@ class RoutineModel {
       this.routineCategorie,
       this.routineStart,
       this.routineEnd,
-      this.routineContent});
+      this.routineContent,
+      this.routineCoverImagePath});
 
   RoutineModel.fromJson(Map<String, dynamic> json) {
     routineId = json['routine_id'];
@@ -32,6 +35,7 @@ class RoutineModel {
     routineStart = json['routine_start'];
     routineEnd = json['routine_end'];
     routineContent = json['routine_content'];
+    routineCoverImagePath = json['routine_cover_image_path'];
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +46,7 @@ class RoutineModel {
     data['routine_start'] = this.routineStart;
     data['routine_end'] = this.routineEnd;
     data['routine_content'] = this.routineContent;
+    data['routine_cover_image_path'] = this.routineCoverImagePath;
     return data;
   }
 }
