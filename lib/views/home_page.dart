@@ -1,7 +1,9 @@
-import 'package:dia/views/daily_routine.dart';
+import 'package:dia/view_model/appbar_viewmodel.dart';
+import 'package:dia/widgets/custom_appbar.dart';
 import 'package:dia/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,39 +14,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         floatingActionButton: const NavBar(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        appBar: AppBar(
-          centerTitle: false,
-          backgroundColor: Colors.white,
-          shadowColor: Colors.transparent,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                "Keşfet",
-                style: TextStyle(
-                  color: Colors.transparent,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.black,
-                  decorationThickness: 2,
-                  shadows: [Shadow(color: Colors.black, offset: Offset(0, -5))],
-                ),
-              ),
-              Text(
-                "Keşfet",
-                style: TextStyle(
-                  color: Colors.transparent,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.black,
-                  decorationThickness: 2,
-                  shadows: [Shadow(color: Colors.black, offset: Offset(0, -5))],
-                ),
-              ),
-            ],
-          ),
+        appBar: CustomAppbar(
+          leftTitle: "Keşfet",
+          rightTitle: "Ana Sayfa",
         ),
         body: Padding(
             padding: const EdgeInsets.all(10),
