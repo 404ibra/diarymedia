@@ -1,13 +1,11 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/firebase_options.dart';
-import 'package:dia/view_model/navbar_viewmodels.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
 import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/profile_view_model.dart';
 import 'package:dia/view_model/sign_in_checkbox.dart';
 import 'package:dia/views/home_page.dart';
-import 'package:dia/views/new_diary/new_diary_view.dart';
-import 'package:dia/views/profile_page.dart';
+import 'package:dia/views/new_diary/copy.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +26,6 @@ Future<void> main() async {
       ),
       ChangeNotifierProvider(
         create: (context) => PickImageBoolenValue(),
-      ),
-      ChangeNotifierProvider(
-        create: (context) => NavBarViewModel(),
       ),
       ChangeNotifierProvider(
         create: (context) => TopicsContainerProivder(),
