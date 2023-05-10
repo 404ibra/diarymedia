@@ -1,7 +1,9 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/view_model/profile_view_model.dart';
+import 'package:dia/views/home_page.dart';
 import 'package:dia/widgets/profile_information_section.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -17,7 +19,9 @@ class ProfilePage extends StatelessWidget {
         toolbarHeight: 50,
         backgroundColor: Color(0xffffafcfe),
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => HomePage(), transition: Transition.fadeIn);
+            },
             icon: const Icon(
               Icons.arrow_back_ios_new_sharp,
               color: CustomColors.profilePrimaryColor,

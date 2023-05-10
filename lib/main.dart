@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           primaryColor: CustomColors.primaryPurple),
-      home: NewDiary(),
+      home: HomePage(),
     );
   }
 }
