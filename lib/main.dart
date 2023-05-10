@@ -2,6 +2,7 @@ import 'package:dia/constant/constants.dart';
 import 'package:dia/firebase_options.dart';
 import 'package:dia/view_model/appbar_viewmodel.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
+import 'package:dia/view_model/new_routine_viewmodel.dart';
 import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/profile_view_model.dart';
 import 'package:dia/view_model/sign_in_checkbox.dart';
@@ -36,6 +37,9 @@ Future<void> main() async {
       ),
       ChangeNotifierProvider(
         create: (context) => AppbarViewModel(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => NewRoutineViewModel(),
       )
     ],
     //deneme

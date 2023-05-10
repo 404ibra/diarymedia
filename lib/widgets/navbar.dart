@@ -66,7 +66,7 @@ class NavBar extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       Get.to(() => const NewDiary(),
-                          transition: Transition.fadeIn);
+                          transition: Transition.downToUp);
                     },
                     child: CircleAvatar(
                       backgroundColor:

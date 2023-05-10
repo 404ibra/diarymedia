@@ -1,3 +1,4 @@
+import 'package:dia/constant/custom_colors.dart';
 import 'package:dia/view_model/appbar_viewmodel.dart';
 import 'package:dia/widgets/custom_appbar.dart';
 import 'package:dia/widgets/navbar.dart';
@@ -26,15 +27,63 @@ class HomePage extends StatelessWidget {
                 crossAxisSpacing: 8,
                 itemCount: posts.length,
                 itemBuilder: (context, index) {
-                  return Column(children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.network(
-                        posts[index].imageUrl,
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  ]);
+                  return GestureDetector(
+                    onLongPress: () {},
+                    child: Column(children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [
+                            Image.network(
+                              posts[index].imageUrl,
+                              fit: BoxFit.cover,
+                            ),
+                            Container(
+                              height: 30,
+                              width: size.width / 2,
+                              color: Colors.white60,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 3.0, horizontal: 10),
+                                    child: CircleAvatar(
+                                      radius: 13,
+                                      backgroundImage: AssetImage(
+                                          "assets/images/wash_face_img.png"),
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      Text(
+                                        "ibra",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      Text(
+                                        "88.Gün",
+                                        style: TextStyle(
+                                            color: CustomColors
+                                                .profilePrimaryColor,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ]),
+                  );
                 })));
   }
 }

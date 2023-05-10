@@ -1,14 +1,18 @@
+import 'dart:io';
+
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dia/constant/constants.dart';
 import 'package:dia/model/create_routine_model.dart';
 import 'package:dia/model/routine_model.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
+import 'package:dia/view_model/new_routine_viewmodel.dart';
 import 'package:dia/views/profile_page.dart';
 import 'package:dia/widgets/routine_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -20,9 +24,23 @@ class RoutineDetails extends StatelessWidget {
   final _controller = TextEditingController();
   int index;
   String UUID = Uuid().v1();
+  final ImagePicker picker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final routineDetailsVM = Provider.of<TopicsContainerProivder>(context);
+    final newRoutineVM = Provider.of<NewRoutineViewModel>(context);
+    Future<void> addPhoto() async {
+      final XFile? response =
+          await picker.pickImage(source: ImageSource.gallery);
+      if (response != null) {
+        newRoutineVM.newRoutineMainImage(response.path);
+
+        return;
+      }
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -86,7 +104,9 @@ class RoutineDetails extends StatelessWidget {
                 Row(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        addPhoto();
+                      },
                       child: SizedBox(
                           height: 30,
                           width: 20,
@@ -113,6 +133,66 @@ class RoutineDetails extends StatelessWidget {
                   ],
                 ),
                 const Divider(),
+                Text(
+                  "Rutin Kapağı",
+                  style: TextStyles.kHeadlineTextStyle
+                      .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  "Keşfet ve anasayfada rutininiz kapak fotoğrafı bu olacak",
+                  style:
+                      TextStyles.kTextStylePrimaryGrey.copyWith(fontSize: 14),
+                ),
+
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      addPhoto();
+                    },
+                    child: SizedBox(
+                        height: size.height / 2.4,
+                        width: size.width / 2,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: newRoutineVM.routineMainImagePath == null
+                                  ? Image.asset(
+                                      "assets/images/books_img.jpeg",
+                                      opacity:
+                                          const AlwaysStoppedAnimation(.65),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.file(
+                                      File(newRoutineVM.routineMainImagePath!),
+                                      fit: BoxFit.cover,
+                                      opacity:
+                                          const AlwaysStoppedAnimation(0.95),
+                                    ),
+                            ),
+                            Center(
+                              child: ShaderMask(
+                                shaderCallback: (bounds) =>
+                                    const LinearGradient(colors: [
+                                  Color(0xfffa7cdc8),
+                                  Color(0xfffaeb9ce),
+                                ]).createShader(bounds),
+                                child: newRoutineVM.selectedImagePath == false
+                                    ? Text(
+                                        "+",
+                                        style: TextStyle(
+                                            fontSize: 120,
+                                            color:
+                                                Colors.white.withOpacity(0.95)),
+                                      )
+                                    : null,
+                              ),
+                            ),
+                          ],
+                        )),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, bottom: 8),
                   child: Text(
