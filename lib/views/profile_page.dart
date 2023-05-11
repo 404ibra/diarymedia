@@ -5,6 +5,7 @@ import 'package:dia/views/home_page.dart';
 import 'package:dia/widgets/profile_information_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -73,10 +74,11 @@ class ProfilePage extends StatelessWidget {
                     }
                     final _userRoutineList =
                         userSnapshot.data!.data()!['routines'];
+
                     return SizedBox(
                       height: 300,
                       child: ListView.builder(
-                          itemCount: 1,
+                          itemCount: _userRoutineList.length,
                           itemBuilder: (context, index) {
                             return StreamBuilder(
                                 stream: FirebaseFirestore.instance
@@ -95,11 +97,24 @@ class ProfilePage extends StatelessWidget {
                                     print("routinesnapshot.data.data is null");
                                   }
                                   final _routineContent =
-                                      routineSnapshots.data!.data();
-                                  return SizedBox.square(
-                                    dimension: 50,
-                                    child: Image.network(_routineContent![
-                                        'routine_cover_image_path']),
+                                      routineSnapshots.data!.data()!.length;
+                                  print("bismillah");
+                                  print(_routineContent);
+                                  return SizedBox(
+                                    height: 300,
+                                    child: MasonryGridView.count(
+                                        crossAxisCount: 2,
+                                        itemCount: _userRoutineList.length,
+                                        crossAxisSpacing: 4,
+                                        mainAxisSpacing: 4,
+                                        itemBuilder: (context, index) {
+                                          return ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            child: Image.network(
+                                                "_routineContent"),
+                                          );
+                                        }),
                                   );
                                 });
                           }),

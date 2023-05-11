@@ -92,7 +92,13 @@ class RoutineDetails extends StatelessWidget {
                           FirebaseFirestore.instance
                               .collection("Routines")
                               .doc(UUID)
-                              .set(routine.toJson());
+                              .set(routine.toJson())
+                              .then((value) => FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseCurrentUserService.uid)
+                                      .update({
+                                    'routines': FieldValue.arrayUnion([UUID])
+                                  }));
                           Get.to(() => const ProfilePage(),
                               transition: Transition.fadeIn);
                         },
