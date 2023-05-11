@@ -58,8 +58,52 @@ class ProfilePage extends StatelessWidget {
                   height: 55,
                 ),
                 StreamBuilder(
-                  builder: (context, snapshot) {
-                    return Text("");
+                  stream: FirebaseFirestore.instance
+                      .collection("Users")
+                      .doc(FirebaseCurrentUserService.uid)
+                      .snapshots(),
+                  builder: (context, userSnapshot) {
+                    if (userSnapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (userSnapshot.data == null) {
+                      print("usersnapshot is null");
+                    } else if (userSnapshot.data!.data() == null) {
+                      print("userssnapshot.data.data is null");
+                    }
+                    final _userRoutineList =
+                        userSnapshot.data!.data()!['routines'];
+                    return SizedBox(
+                      height: 300,
+                      child: ListView.builder(
+                          itemCount: 1,
+                          itemBuilder: (context, index) {
+                            return StreamBuilder(
+                                stream: FirebaseFirestore.instance
+                                    .collection("Routines")
+                                    .doc(_userRoutineList[index])
+                                    .snapshots(),
+                                builder: (context, routineSnapshots) {
+                                  if (routineSnapshots.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                        child: CircularProgressIndicator());
+                                  } else if (routineSnapshots.data == null) {
+                                    print("routineSnapshots is null");
+                                  } else if (routineSnapshots.data!.data() ==
+                                      null) {
+                                    print("routinesnapshot.data.data is null");
+                                  }
+                                  final _routineContent =
+                                      routineSnapshots.data!.data();
+                                  return SizedBox.square(
+                                    dimension: 50,
+                                    child: Image.network(_routineContent![
+                                        'routine_cover_image_path']),
+                                  );
+                                });
+                          }),
+                    );
                   },
                 )
               ],
