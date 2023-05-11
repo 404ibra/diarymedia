@@ -58,69 +58,6 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(
                   height: 55,
                 ),
-                StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("Users")
-                      .doc(FirebaseCurrentUserService.uid)
-                      .snapshots(),
-                  builder: (context, userSnapshot) {
-                    if (userSnapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (userSnapshot.data == null) {
-                      print("usersnapshot is null");
-                    } else if (userSnapshot.data!.data() == null) {
-                      print("userssnapshot.data.data is null");
-                    }
-                    final _userRoutineList =
-                        userSnapshot.data!.data()!['routines'];
-
-                    return SizedBox(
-                      height: 300,
-                      child: ListView.builder(
-                          itemCount: _userRoutineList.length,
-                          itemBuilder: (context, index) {
-                            return StreamBuilder(
-                                stream: FirebaseFirestore.instance
-                                    .collection("Routines")
-                                    .doc(_userRoutineList[index])
-                                    .snapshots(),
-                                builder: (context, routineSnapshots) {
-                                  if (routineSnapshots.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return const Center(
-                                        child: CircularProgressIndicator());
-                                  } else if (routineSnapshots.data == null) {
-                                    print("routineSnapshots is null");
-                                  } else if (routineSnapshots.data!.data() ==
-                                      null) {
-                                    print("routinesnapshot.data.data is null");
-                                  }
-                                  final _routineContent =
-                                      routineSnapshots.data!.data()!.length;
-                                  print("bismillah");
-                                  print(_routineContent);
-                                  return SizedBox(
-                                    height: 300,
-                                    child: MasonryGridView.count(
-                                        crossAxisCount: 2,
-                                        itemCount: _userRoutineList.length,
-                                        crossAxisSpacing: 4,
-                                        mainAxisSpacing: 4,
-                                        itemBuilder: (context, index) {
-                                          return ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            child: Image.network(
-                                                "_routineContent"),
-                                          );
-                                        }),
-                                  );
-                                });
-                          }),
-                    );
-                  },
-                )
               ],
             ),
           ),
