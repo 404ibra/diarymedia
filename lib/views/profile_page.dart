@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dia/constant/constants.dart';
 import 'package:dia/view_model/profile_view_model.dart';
 import 'package:dia/views/home_page.dart';
 import 'package:dia/widgets/profile_information_section.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +22,8 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Color(0xffffafcfe),
         leading: IconButton(
             onPressed: () {
-              Get.to(() => HomePage(), transition: Transition.fadeIn);
+              print(FirebaseAuth.instance.currentUser!.uid);
+              Get.to(() => const HomePage(), transition: Transition.fadeIn);
             },
             icon: const Icon(
               Icons.arrow_back_ios_new_sharp,
@@ -54,86 +57,11 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(
                   height: 55,
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: size.height * 0.48,
-                      width: size.width * 0.6,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 1,
-                                offset: Offset(0, -1))
-                          ],
-                          image: const DecorationImage(
-                              opacity: 0.75,
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                  "assets/images/wash_face_img.png"))),
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          height: size.height * 0.240,
-                          width: size.width * 0.4,
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 1,
-                                    offset: Offset(0, -1))
-                              ],
-                              image: const DecorationImage(
-                                  opacity: 0.75,
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(
-                                      "assets/images/fitness_img.jpeg"))),
-                        ),
-                        Container(
-                          height: size.height * 0.240,
-                          width: size.width * 0.4,
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 1,
-                                    offset: Offset(0, -1))
-                              ],
-                              image: const DecorationImage(
-                                  opacity: 0.75,
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(
-                                      "assets/images/books_img.jpeg"))),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Container(
-                  height: size.height * 0.240,
-                  width: size.width,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          opacity: 0.75,
-                          fit: BoxFit.cover,
-                          image:
-                              AssetImage("assets/images/education_img.jpeg"))),
-                ),
-                Container(
-                  height: size.height * 0.240,
-                  width: size.width,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          opacity: 0.75,
-                          fit: BoxFit.cover,
-                          image:
-                              AssetImage("assets/images/education_img.jpeg"))),
-                ),
+                StreamBuilder(
+                  builder: (context, snapshot) {
+                    return Text("");
+                  },
+                )
               ],
             ),
           ),

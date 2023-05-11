@@ -6,6 +6,8 @@ import 'package:dia/view_model/new_routine_viewmodel.dart';
 import 'package:dia/view_model/pick_image.dart';
 import 'package:dia/view_model/profile_view_model.dart';
 import 'package:dia/view_model/sign_in_checkbox.dart';
+import 'package:dia/views/auth/login_page.dart';
+import 'package:dia/views/auth/user_register.dart';
 import 'package:dia/views/home_page.dart';
 import 'package:dia/views/new_diary/copy.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -65,7 +67,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           primaryColor: CustomColors.primaryPurple),
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }

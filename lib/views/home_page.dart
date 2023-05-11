@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
               builder: (context, snapshot) {
                 // print(snapshot.data!.docs[0].data());
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 } else if (snapshot.data == null) {
                   return Text("data");
                 }
