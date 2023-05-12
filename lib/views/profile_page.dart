@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dia/constant/constants.dart';
 import 'package:dia/view_model/profile_view_model.dart';
 import 'package:dia/views/home_page.dart';
+import 'package:dia/widgets/navbar.dart';
 import 'package:dia/widgets/profile_information_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,8 @@ class ProfilePage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final profileVM = Provider.of<ProfileViewModel>(context);
     return Scaffold(
+      floatingActionButton: const NavBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 50,
@@ -58,72 +61,70 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(
                   height: 55,
                 ),
-                StreamBuilder(
-                    stream: FirebaseFirestore.instance
-                        .collection("Users")
-                        .doc(FirebaseCurrentUserService.uid)
-                        .snapshots(),
-                    builder: (context, userSnapshot) {
-                      if (userSnapshot.connectionState ==
-                          ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (userSnapshot.data == null) {
-                        print("usersnapshot is null");
-                      } else if (userSnapshot.data!.data() == null) {
-                        print("usersnapshot.data() is null");
-                      }
-                      final responseData =
-                          userSnapshot.data!.data()!['routines'];
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection("Users")
+                          .doc(FirebaseCurrentUserService.uid)
+                          .snapshots(),
+                      builder: (context, userSnapshot) {
+                        if (userSnapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (userSnapshot.data == null) {
+                          print("usersnapshot is null");
+                        } else if (userSnapshot.data!.data() == null) {
+                          print("usersnapshot.data() is null");
+                        }
+                        final responseData =
+                            userSnapshot.data!.data()!['routines'];
 
-                      return SizedBox(
-                        height: 400,
-                        child: ListView.builder(
-                            itemCount: responseData.length,
-                            itemBuilder: (context, index) {
-                              return StreamBuilder(
-                                  stream: FirebaseFirestore.instance
-                                      .collection("Routines")
-                                      .where(responseData[index])
-                                      .snapshots(),
-                                  builder: (context, routineSnapshot) {
-                                    if (routineSnapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return const Center(
-                                          child: CircularProgressIndicator());
-                                    } else if (routineSnapshot.data == null) {
-                                      print("routine is null");
-                                    } else if (routineSnapshot.data! == null) {
-                                      print("routine.data() is null");
-                                    }
-                                    final routineIndex = index;
-                                    final response = routineSnapshot;
-                                    print(response);
-                                    return SizedBox(
-                                      height: 600,
-                                      child: GridView.builder(
-                                        itemCount: responseData.length,
-                                        gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 2,
-                                                mainAxisSpacing: 8,
-                                                crossAxisSpacing: 8),
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            height: 60,
-                                            width: 60,
-                                            child: Image.network(
-                                              response.data!.docs[index]
-                                                  ['routine_cover_image_path'],
-                                              fit: BoxFit.cover,
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  });
-                            }),
-                      );
-                    })
+                        return SizedBox(
+                          height: size.height,
+                          child: ListView.builder(
+                              itemCount: responseData.length,
+                              itemBuilder: (context, index) {
+                                return StreamBuilder(
+                                    stream: FirebaseFirestore.instance
+                                        .collection("Routines")
+                                        .where(responseData[index])
+                                        .snapshots(),
+                                    builder: (context, routineSnapshot) {
+                                      if (routineSnapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return const Center(
+                                            child: CircularProgressIndicator());
+                                      } else if (routineSnapshot.data == null) {
+                                        print("routine is null");
+                                      } else if (routineSnapshot.data!.docs ==
+                                          null) {
+                                        print("routine.data() is null");
+                                      }
+                                      final response = routineSnapshot;
+                                      return SizedBox(
+                                        height: size.height,
+                                        child: MasonryGridView.count(
+                                            crossAxisCount: 2,
+                                            mainAxisSpacing: 8,
+                                            crossAxisSpacing: 8,
+                                            itemCount: responseData.length,
+                                            itemBuilder: (context, index) {
+                                              return ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                child: Image.network(response
+                                                        .data!.docs[index][
+                                                    'routine_cover_image_path']),
+                                              );
+                                            }),
+                                      );
+                                    });
+                              }),
+                        );
+                      }),
+                )
               ],
             ),
           ),
