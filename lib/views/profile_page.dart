@@ -1,14 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dia/constant/constants.dart';
 import 'package:dia/view_model/profile_view_model.dart';
-import 'package:dia/views/home_page.dart';
+import 'package:dia/widgets/myprofile_appbar.dart';
 import 'package:dia/widgets/navbar.dart';
-import 'package:dia/widgets/profile_headline.dart';
 import 'package:dia/widgets/profile_information_section.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -21,49 +15,8 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: const NavBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 50,
-        backgroundColor: Color(0xffffafcfe),
-        leading: IconButton(
-            onPressed: () {
-              print(FirebaseAuth.instance.currentUser!.uid);
-              Get.to(() => const HomePage(), transition: Transition.fadeIn);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new_sharp,
-              color: CustomColors.profilePrimaryColor,
-            )),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ProfileHeadline(
-              ontap: () {
-                profileVM.changeSelectedIndex(0);
-              },
-              headlineText: "Rutinler",
-              profileVM: profileVM,
-              index: 0,
-            ),
-            ProfileHeadline(
-                ontap: () {
-                  profileVM.changeSelectedIndex(1);
-                },
-                headlineText: "Takvim",
-                profileVM: profileVM,
-                index: 1)
-          ],
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.edit,
-                color: CustomColors.profilePrimaryColor,
-              )),
-        ],
-      ),
-      backgroundColor: Color(0xfffedf3fa),
+      appBar: MyProfileAppBar(profileVM: profileVM),
+      backgroundColor: const Color(0xfffedf3fa),
       body: NotificationListener<ScrollNotification>(
         onNotification: (notification) {
           if (notification.metrics.pixels > 60) {
@@ -82,97 +35,12 @@ class ProfilePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 12),
-                  child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection("Users")
-                          .doc(FirebaseCurrentUserService.uid)
-                          .snapshots(),
-                      builder: (context, userSnapshot) {
-                        if (userSnapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else if (userSnapshot.data == null) {
-                          print("usersnapshot is null");
-                        } else if (userSnapshot.data!.data() == null) {
-                          print("usersnapshot.data() is null");
-                        }
-                        final responseData =
-                            userSnapshot.data!.data()!['routines'];
-
-                        return SizedBox(
-                          height: size.height,
-                          child: ListView.builder(
-                              itemCount: responseData.length,
-                              itemBuilder: (context, index) {
-                                return StreamBuilder(
-                                    stream: FirebaseFirestore.instance
-                                        .collection("Routines")
-                                        .where(responseData[index])
-                                        .snapshots(),
-                                    builder: (context, routineSnapshot) {
-                                      if (routineSnapshot.connectionState ==
-                                          ConnectionState.waiting) {
-                                        return const Center(
-                                            child: CircularProgressIndicator());
-                                      } else if (routineSnapshot.data == null) {
-                                        print("routine is null");
-                                      }
-                                      final response = routineSnapshot;
-                                      return SizedBox(
-                                        height: size.height,
-                                        child: MasonryGridView.count(
-                                            crossAxisCount: 2,
-                                            mainAxisSpacing: 8,
-                                            crossAxisSpacing: 8,
-                                            itemCount: responseData.length,
-                                            itemBuilder: (context, index) {
-                                              return ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                child: Image.network(response
-                                                        .data!.docs[index][
-                                                    'routine_cover_image_path']),
-                                              );
-                                            }),
-                                      );
-                                    });
-                              }),
-                        );
-                      }),
+                  child: profileVM.MyProfileVM(size),
                 )
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ScrollTextUnderline extends StatelessWidget {
-  const ScrollTextUnderline({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(
-        bottom: 3, // Space between underline and text
-      ),
-      decoration: const BoxDecoration(
-          border: Border(
-              bottom: BorderSide(
-        color: CustomColors.profileSecondoryColor,
-        width: 1.0, // Underline thickness
-      ))),
-      child: const Text(
-        "Rutinler",
-        style: TextStyle(
-            color: CustomColors.profilePrimaryColor,
-            fontSize: 20,
-            fontWeight: FontWeight.bold),
       ),
     );
   }
