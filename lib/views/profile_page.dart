@@ -33,6 +33,19 @@ class ProfilePage extends StatelessWidget {
               Icons.arrow_back_ios_new_sharp,
               color: CustomColors.profilePrimaryColor,
             )),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              "Rutinler",
+              style: TextStyles.profileMainStyle.copyWith(fontSize: 18),
+            ),
+            Text(
+              "Takvim",
+              style: TextStyles.profileMainStyle.copyWith(fontSize: 18),
+            ),
+          ],
+        ),
         actions: [
           IconButton(
               onPressed: () {},
@@ -58,11 +71,9 @@ class ProfilePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 ProfileInformationSection(),
-                const SizedBox(
-                  height: 55,
-                ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 12),
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
                           .collection("Users")
@@ -98,9 +109,6 @@ class ProfilePage extends StatelessWidget {
                                             child: CircularProgressIndicator());
                                       } else if (routineSnapshot.data == null) {
                                         print("routine is null");
-                                      } else if (routineSnapshot.data!.docs ==
-                                          null) {
-                                        print("routine.data() is null");
                                       }
                                       final response = routineSnapshot;
                                       return SizedBox(

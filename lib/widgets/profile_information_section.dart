@@ -27,6 +27,7 @@ class ProfileInformationSection extends StatelessWidget {
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                /*
                 const Padding(
                   padding: CustomPaddings.kHorizontalPadding,
                   child: Text(
@@ -34,6 +35,8 @@ class ProfileInformationSection extends StatelessWidget {
                     style: TextStyles.profileMainStyle,
                   ),
                 ),
+               
+                */
                 Align(
                   alignment: Alignment.center,
                   child: Column(
