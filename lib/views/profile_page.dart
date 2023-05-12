@@ -3,6 +3,7 @@ import 'package:dia/constant/constants.dart';
 import 'package:dia/view_model/profile_view_model.dart';
 import 'package:dia/views/home_page.dart';
 import 'package:dia/widgets/navbar.dart';
+import 'package:dia/widgets/profile_headline.dart';
 import 'package:dia/widgets/profile_information_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -36,14 +37,21 @@ class ProfilePage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              "Rutinler",
-              style: TextStyles.profileMainStyle.copyWith(fontSize: 18),
+            ProfileHeadline(
+              ontap: () {
+                profileVM.changeSelectedIndex(0);
+              },
+              headlineText: "Rutinler",
+              profileVM: profileVM,
+              index: 0,
             ),
-            Text(
-              "Takvim",
-              style: TextStyles.profileMainStyle.copyWith(fontSize: 18),
-            ),
+            ProfileHeadline(
+                ontap: () {
+                  profileVM.changeSelectedIndex(1);
+                },
+                headlineText: "Takvim",
+                profileVM: profileVM,
+                index: 1)
           ],
         ),
         actions: [
