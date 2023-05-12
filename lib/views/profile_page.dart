@@ -83,7 +83,7 @@ class ProfilePage extends StatelessWidget {
                               return StreamBuilder(
                                   stream: FirebaseFirestore.instance
                                       .collection("Routines")
-                                      .doc(responseData[index])
+                                      .where(responseData[index])
                                       .snapshots(),
                                   builder: (context, routineSnapshot) {
                                     if (routineSnapshot.connectionState ==
@@ -92,27 +92,33 @@ class ProfilePage extends StatelessWidget {
                                           child: CircularProgressIndicator());
                                     } else if (routineSnapshot.data == null) {
                                       print("routine is null");
-                                    } else if (routineSnapshot.data!.data() ==
-                                        null) {
+                                    } else if (routineSnapshot.data! == null) {
                                       print("routine.data() is null");
                                     }
-                                    final response = routineSnapshot.data!
-                                        .data()!['routine_cover_image_path'];
+                                    final routineIndex = index;
+                                    final response = routineSnapshot;
                                     print(response);
-                                    return Column(
-                                      children: <Widget>[
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          child: SizedBox(
-                                              height: 60,
-                                              width: 80,
-                                              child: Image.network(
-                                                response,
-                                                fit: BoxFit.cover,
-                                              )),
-                                        )
-                                      ],
+                                    return SizedBox(
+                                      height: 600,
+                                      child: GridView.builder(
+                                        itemCount: responseData.length,
+                                        gridDelegate:
+                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 2,
+                                                mainAxisSpacing: 8,
+                                                crossAxisSpacing: 8),
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            height: 60,
+                                            width: 60,
+                                            child: Image.network(
+                                              response.data!.docs[index]
+                                                  ['routine_cover_image_path'],
+                                              fit: BoxFit.cover,
+                                            ),
+                                          );
+                                        },
+                                      ),
                                     );
                                   });
                             }),
