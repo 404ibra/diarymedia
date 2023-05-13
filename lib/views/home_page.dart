@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dia/constant/custom_colors.dart';
 import 'package:dia/view_model/appbar_viewmodel.dart';
+import 'package:dia/view_model/home_page_viewmodel.dart';
 import 'package:dia/widgets/custom_appbar.dart';
+import 'package:dia/widgets/homepage_appbar.dart';
 import 'package:dia/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -13,13 +15,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final homePageVM = Provider.of<HomePageViewModel>(context);
     return Scaffold(
         floatingActionButton: const NavBar(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        appBar: CustomAppbar(
-          leftTitle: "Keşfet",
-          rightTitle: "Ana Sayfa",
-        ),
+        appBar: HomePageAppBar(homePageVM: homePageVM),
         body: Padding(
             padding: const EdgeInsets.all(10),
             child: StreamBuilder(

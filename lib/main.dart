@@ -1,6 +1,7 @@
 import 'package:dia/constant/constants.dart';
 import 'package:dia/firebase_options.dart';
 import 'package:dia/view_model/appbar_viewmodel.dart';
+import 'package:dia/view_model/home_page_viewmodel.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
 import 'package:dia/view_model/new_routine_viewmodel.dart';
 import 'package:dia/view_model/pick_image.dart';
@@ -39,6 +40,9 @@ Future<void> main() async {
       ),
       ChangeNotifierProvider(
         create: (context) => NewRoutineViewModel(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => HomePageViewModel(),
       )
     ],
     //deneme
