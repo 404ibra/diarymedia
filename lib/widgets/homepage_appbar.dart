@@ -18,6 +18,10 @@ class HomePageAppBar extends StatelessWidget with PreferredSizeWidget {
       elevation: 0,
       toolbarHeight: 50,
       backgroundColor: Color(0xffffafcfe),
+      leading: const Icon(
+        Icons.person,
+        color: CustomColors.profilePrimaryColor,
+      ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -45,7 +49,7 @@ class HomePageAppBar extends StatelessWidget with PreferredSizeWidget {
         IconButton(
             onPressed: () {},
             icon: const Icon(
-              Icons.edit,
+              Icons.notifications,
               color: CustomColors.profilePrimaryColor,
             )),
       ],
