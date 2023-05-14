@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dia/constant/custom_colors.dart';
-import 'package:dia/view_model/appbar_viewmodel.dart';
 import 'package:dia/view_model/home_page_viewmodel.dart';
-import 'package:dia/widgets/custom_appbar.dart';
+import 'package:dia/views/routine_view.dart';
 import 'package:dia/widgets/homepage_appbar.dart';
 import 'package:dia/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -40,7 +40,13 @@ class HomePage extends StatelessWidget {
                     itemCount: response.docs.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onLongPress: () {},
+                        onTap: () {
+                          Get.to(() => RoutineView(data: response.docs[index]),
+                              transition: Transition.zoom);
+                        },
+                        onLongPress: () {
+                          homePageVM.convertLongPress();
+                        },
                         child: Column(children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(15),
@@ -92,7 +98,7 @@ class HomePage extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           )
