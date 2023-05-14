@@ -24,4 +24,9 @@ class TextStyles {
     fontSize: 18.5,
     fontWeight: FontWeight.bold,
   );
+
+  static const userNameUserNameStyle = TextStyle(
+      color: CustomColors.profilePrimaryColor,
+      fontSize: 14,
+      fontWeight: FontWeight.w500);
 }
