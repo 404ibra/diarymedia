@@ -3,6 +3,7 @@ import 'package:dia/constant/constants.dart';
 import 'package:dia/constant/custom_colors.dart';
 import 'package:dia/widgets/custom_appbar.dart';
 import 'package:dia/widgets/navbar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -128,6 +129,32 @@ class RoutineView extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(
+            height: size.height,
+            child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("Routines")
+                    .doc(data['routine_id'])
+                    .snapshots(),
+                builder: (context, routine) {
+                  if (routine.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (routine.data == null) {
+                    print("routine.data is null");
+                  } else if (routine.hasError) {
+                    print("error var");
+                  }
+                  final routineContentResponse = routine.data!.data()!;
+                  return ListView.builder(
+                      itemCount:
+                          routineContentResponse['routine_content'].length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Text(
+                            routineContentResponse['routine_content'][index]);
+                      });
+                }),
+          )
         ],
       ),
     );
