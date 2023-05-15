@@ -115,6 +115,38 @@ class RoutineView extends StatelessWidget {
                               ],
                             ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  children: const <Widget>[
+                                    Icon(Icons.bookmark_border_rounded),
+                                    Text("4")
+                                  ],
+                                ),
+                                Column(
+                                  children: const <Widget>[
+                                    Icon(Icons.favorite_border_rounded),
+                                    Text("4")
+                                  ],
+                                ),
+                                Column(
+                                  children: const <Widget>[
+                                    Icon(Icons.mode_comment_outlined),
+                                    Text("4")
+                                  ],
+                                ),
+                                Column(
+                                  children: const <Widget>[
+                                    Icon(Icons.share),
+                                    Text("4")
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
