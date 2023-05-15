@@ -12,11 +12,11 @@ class ProfileInformationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final profileVM = Provider.of<ProfileViewModel>(context);
     return AnimatedContainer(
-      duration: Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 1200),
       curve: Curves.ease,
       height: profileVM.currentHeight,
       decoration: BoxDecoration(
-          color: Color(0xffffafcfe),
+          color: const Color(0xffffafcfe),
           borderRadius: const BorderRadius.only(
               bottomRight: Radius.circular(30),
               bottomLeft: Radius.circular(30)),
