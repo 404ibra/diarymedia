@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../constant/constants.dart';
-import '../constant/custom_colors.dart';
 
 class RoutineViewModel extends ChangeNotifier {
-  double currentHeight = 350;
+  double currentHeight = 310;
   bool aniamatedStarted = false;
 
   void changeInformationHeight(double pixel, bool showInformation) {

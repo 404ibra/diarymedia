@@ -97,23 +97,20 @@ class RoutineHead extends StatelessWidget {
                       Column(
                         children: const <Widget>[
                           Icon(Icons.bookmark_border_rounded),
-                          Text("4")
                         ],
                       ),
                       Column(
                         children: const <Widget>[
                           Icon(Icons.favorite_border_rounded),
-                          Text("4")
                         ],
                       ),
                       Column(
                         children: const <Widget>[
                           Icon(Icons.mode_comment_outlined),
-                          Text("4")
                         ],
                       ),
                       Column(
-                        children: const <Widget>[Icon(Icons.share), Text("4")],
+                        children: const <Widget>[Icon(Icons.share)],
                       ),
                     ],
                   ),
