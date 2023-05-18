@@ -8,20 +8,16 @@ import '../constant/constants.dart';
 import '../views/home_page.dart';
 
 class HomePageAppBar extends StatelessWidget with PreferredSizeWidget {
-  const HomePageAppBar({super.key, required this.homePageVM});
+  HomePageAppBar({super.key, required this.homePageVM, this.profileImageOnTap});
 
   final HomePageViewModel homePageVM;
-
+  void Function()? profileImageOnTap;
   @override
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
       toolbarHeight: 50,
       backgroundColor: Color(0xffffafcfe),
-      leading: const Icon(
-        Icons.person,
-        color: CustomColors.profilePrimaryColor,
-      ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

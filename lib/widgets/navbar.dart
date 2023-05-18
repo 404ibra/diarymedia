@@ -1,5 +1,6 @@
 import 'package:dia/views/home_page.dart';
 import 'package:dia/views/profile_page.dart';
+import 'package:dia/views/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,7 +45,7 @@ class NavBar extends StatelessWidget {
             children: <Widget>[
               InkWell(
                 onTap: () {
-                  Get.to(() => const HomePage(), transition: Transition.fadeIn);
+                  Get.to(() => HomePage(), transition: Transition.fadeIn);
                 },
                 child: SizedBox.square(
                   dimension: 25,
@@ -95,6 +96,9 @@ class NavBar extends StatelessWidget {
                 ),
               ),
               InkWell(
+                onTap: () {
+                  Get.to(() => SearchPage(), transition: Transition.fadeIn);
+                },
                 child: SizedBox.square(
                   dimension: 25,
                   child: Image.asset(

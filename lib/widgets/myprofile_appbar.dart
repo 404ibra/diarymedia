@@ -22,7 +22,7 @@ class MyProfileAppBar extends StatelessWidget with PreferredSizeWidget {
       backgroundColor: Color(0xffffafcfe),
       leading: IconButton(
           onPressed: () {
-            Get.to(() => const HomePage(), transition: Transition.fadeIn);
+            Get.to(() => HomePage(), transition: Transition.fadeIn);
           },
           icon: const Icon(
             Icons.arrow_back_ios_new_sharp,

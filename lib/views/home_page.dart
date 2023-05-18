@@ -10,7 +10,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,49 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         floatingActionButton: const NavBar(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        appBar: HomePageAppBar(homePageVM: homePageVM),
+        appBar: HomePageAppBar(
+          homePageVM: homePageVM,
+          profileImageOnTap: () {
+            if (scaffoldKey.currentState != null) {
+              scaffoldKey.currentState!.openDrawer();
+            } else {
+              print("object");
+            }
+          },
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text(
+                  'Yan Menü',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Ana Sayfa'),
+                onTap: () {
+                  // Ana sayfaya yönlendirme işlemleri burada yapılabilir
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Ayarlar'),
+                onTap: () {
+                  // Ayarlara yönlendirme işlemleri burada yapılabilir
+                },
+              ),
+            ],
+          ),
+        ),
         body: Padding(
             padding: const EdgeInsets.all(10),
             child: StreamBuilder(

@@ -66,7 +66,7 @@ class FirebaseFunctions {
           .collection(FirebaseRef.FirebaseUsers)
           .doc(FirebaseAuthService.AuthService.currentUser!.uid)
           .set(userDetails.toJson())
-          .then((value) => Get.to(() => const HomePage()));
+          .then((value) => Get.to(() => HomePage()));
     } catch (err) {
       print("User Register Error : $err");
     }
