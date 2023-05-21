@@ -82,71 +82,80 @@ class HomePage extends StatelessWidget {
                     crossAxisSpacing: 8,
                     itemCount: response.docs.length,
                     itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Get.to(() => RoutineView(data: response.docs[index]),
-                              transition: Transition.zoom);
-                        },
-                        onLongPress: () {
-                          homePageVM.convertLongPress();
-                        },
-                        child: Column(children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Stack(
-                              alignment: Alignment.bottomCenter,
-                              children: [
-                                Image.network(
-                                  response.docs[index]
-                                      ['routine_cover_image_path'],
-                                  fit: BoxFit.cover,
-                                ),
-                                Container(
-                                  height: 30,
-                                  width: size.width / 2,
-                                  color: Colors.white60,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 3.0, horizontal: 10),
-                                        child: CircleAvatar(
-                                          radius: 13,
-                                          backgroundImage: AssetImage(
-                                              "assets/images/wash_face_img.png"),
-                                        ),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: const [
-                                          Text(
-                                            "ibra",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
+                      return
+                          //admob eklenecek
+                          index % 2 == 0
+                              ? Image.asset("assets/images/wash_face_img.png")
+                              : GestureDetector(
+                                  onTap: () {
+                                    Get.to(
+                                        () => RoutineView(
+                                            data: response.docs[index]),
+                                        transition: Transition.zoom);
+                                  },
+                                  onLongPress: () {
+                                    homePageVM.convertLongPress();
+                                  },
+                                  child: Column(children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Stack(
+                                        alignment: Alignment.bottomCenter,
+                                        children: [
+                                          Image.network(
+                                            response.docs[index]
+                                                ['routine_cover_image_path'],
+                                            fit: BoxFit.cover,
                                           ),
-                                          Text(
-                                            "88.Gün",
-                                            style: TextStyle(
-                                                color: CustomColors
-                                                    .profilePrimaryColor,
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w600),
+                                          Container(
+                                            height: 30,
+                                            width: size.width / 2,
+                                            color: Colors.white60,
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 3.0,
+                                                      horizontal: 10),
+                                                  child: CircleAvatar(
+                                                    radius: 13,
+                                                    backgroundImage: AssetImage(
+                                                        "assets/images/wash_face_img.png"),
+                                                  ),
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: const [
+                                                    Text(
+                                                      "ibra",
+                                                      style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                    Text(
+                                                      "88.Gün",
+                                                      style: TextStyle(
+                                                          color: CustomColors
+                                                              .profilePrimaryColor,
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ]),
-                      );
+                                      ),
+                                    )
+                                  ]),
+                                );
                     });
               },
             )));
