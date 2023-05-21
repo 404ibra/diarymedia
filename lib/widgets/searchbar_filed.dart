@@ -33,7 +33,7 @@ class SearchBar extends StatelessWidget {
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(
-                    color: CustomColors.profileSecondoryColor)),
+                    width: 1, color: CustomColors.profileSecondoryColor)),
             hintText: "Rutin veya Kullanıcı yazın",
           ),
         ),
