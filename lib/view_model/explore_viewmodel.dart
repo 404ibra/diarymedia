@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dia/view_model/home_page_viewmodel.dart';
 import 'package:dia/views/routine_view.dart';
+import 'package:dia/widgets/routine_bottom_information.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-
-import '../constant/constants.dart';
 
 Padding ExploreRoutineView(HomePageViewModel homePageVM, Size size) {
   return Padding(
@@ -57,49 +56,7 @@ Padding ExploreRoutineView(HomePageViewModel homePageVM, Size size) {
                                           ['routine_cover_image_path'],
                                       fit: BoxFit.cover,
                                     ),
-                                    Container(
-                                      height: 35,
-                                      width: size.width / 2,
-                                      color: Colors.white60,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 3.0, horizontal: 10),
-                                            child: CircleAvatar(
-                                              radius: 13,
-                                              backgroundImage: AssetImage(
-                                                  "assets/images/wash_face_img.png"),
-                                            ),
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: const [
-                                              Text(
-                                                "@ibra",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                              Text(
-                                                "88.Gün",
-                                                style: TextStyle(
-                                                    color: CustomColors
-                                                        .profilePrimaryColor,
-                                                    fontSize: 10,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
+                                    const RoutineBottomInformation(),
                                   ],
                                 ),
                               )
