@@ -1,13 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dia/constant/custom_colors.dart';
 import 'package:dia/view_model/explore_viewmodel.dart';
 import 'package:dia/view_model/home_page_viewmodel.dart';
-import 'package:dia/views/routine_view.dart';
 import 'package:dia/widgets/homepage_appbar.dart';
 import 'package:dia/widgets/navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -35,7 +30,7 @@ class HomePage extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              DrawerHeader(
+              const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
