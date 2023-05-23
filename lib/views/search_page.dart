@@ -19,7 +19,15 @@ class SearchPage extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const NavBar(),
-      body: SafeArea(child: ExploreRoutineView(homePageVM, size)),
+      body: SingleChildScrollView(
+        child: SafeArea(
+            child: Column(
+          children: [
+            SearchBar(controller: controller),
+            ExploreRoutineView(homePageVM, size),
+          ],
+        )),
+      ),
     );
   }
 }
