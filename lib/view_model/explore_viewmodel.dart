@@ -21,7 +21,7 @@ Padding ExploreRoutineView(HomePageViewModel homePageVM, Size size) {
           }
           final response = snapshot.data!;
           return MasonryGridView.count(
-              physics: PageScrollPhysics(),
+              physics: const PageScrollPhysics(),
               shrinkWrap: true,
               crossAxisCount: 2,
               mainAxisSpacing: 8,
@@ -58,7 +58,7 @@ Padding ExploreRoutineView(HomePageViewModel homePageVM, Size size) {
                                       fit: BoxFit.cover,
                                     ),
                                     Container(
-                                      height: 30,
+                                      height: 35,
                                       width: size.width / 2,
                                       color: Colors.white60,
                                       child: Row(
@@ -79,7 +79,7 @@ Padding ExploreRoutineView(HomePageViewModel homePageVM, Size size) {
                                                 CrossAxisAlignment.start,
                                             children: const [
                                               Text(
-                                                "ibra",
+                                                "@ibra",
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 12,
