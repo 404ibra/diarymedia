@@ -13,9 +13,9 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+      padding: const EdgeInsets.only(left: 16.0, right: 16, top: 8, bottom: 4),
       child: SizedBox(
-        height: 60,
+        height: 55,
         child: TextField(
           cursorColor: CustomColors.profileSecondoryColor,
           controller: controller,
@@ -33,8 +33,8 @@ class SearchBar extends StatelessWidget {
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: const BorderSide(
-                    width: 1, color: CustomColors.profileSecondoryColor)),
-            hintText: "Rutin veya Kullanıcı yazın",
+                    width: 0.8, color: CustomColors.profileSecondoryColor)),
+            hintText: "REM'de Keşfet",
           ),
         ),
       ),
