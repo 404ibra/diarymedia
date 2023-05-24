@@ -42,12 +42,17 @@ class ProfileInformationSection extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 18),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 17.0),
-                        child: CircleAvatar(
-                          radius: 45,
-                          backgroundImage:
-                              AssetImage("assets/images/wash_face_img.png"),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 17.0),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 1200),
+                          child: profileVM.animatedStarted == false
+                              ? const CircleAvatar(
+                                  radius: 45,
+                                  backgroundImage: AssetImage(
+                                      "assets/images/wash_face_img.png"),
+                                )
+                              : null,
                         ),
                       ),
                       Text(

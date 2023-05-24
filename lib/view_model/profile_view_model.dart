@@ -35,7 +35,6 @@ class ProfileViewModel extends ChangeNotifier {
             print("usersnapshot.data() is null");
           }
           final responseData = userSnapshot.data!.data()!['routines'];
-
           return SizedBox(
             height: size.height,
             child: ListView.builder(
@@ -45,6 +44,11 @@ class ProfileViewModel extends ChangeNotifier {
                       stream: FirebaseFirestore.instance
                           .collection("Routines")
                           .where(responseData[index])
+                          // rutinler tarihine göre sıralansın
+                          //bitiş taraihine göre
+                          //bunun için rutinin bitiş tarihini firestore'a
+                          //timestamp olarak yolla ve burada orderby ile sırala
+                          // .orderBy('routine_end')
                           .snapshots(),
                       builder: (context, routineSnapshot) {
                         if (routineSnapshot.connectionState ==

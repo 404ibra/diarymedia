@@ -1,4 +1,4 @@
-import 'package:dia/widgets/auth/custom_textfield.dart';
+import 'package:dia/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
 class UserInputs {
