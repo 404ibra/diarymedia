@@ -8,7 +8,6 @@ import 'package:dia/model/routine_model.dart';
 import 'package:dia/view_model/new_diary_viewmodels.dart';
 import 'package:dia/view_model/new_routine_viewmodel.dart';
 import 'package:dia/views/profile_page.dart';
-import 'package:dia/widgets/routine_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +37,15 @@ class RoutineDetails extends StatelessWidget {
       if (response != null) {
         newRoutineVM.newRoutineMainImage(response.path);
 
+        return;
+      }
+    }
+
+    Future<void> addRoutineDetailPhoto() async {
+      final XFile? response =
+          await picker.pickImage(source: ImageSource.gallery);
+      if (response != null) {
+        newRoutineVM.routineDetailImage(response.path);
         return;
       }
     }
@@ -75,9 +83,24 @@ class RoutineDetails extends StatelessWidget {
                               .putFile(
                                   File(newRoutineVM.routineMainImagePath!));
 
+                          final uploadRoutineDetailsPhoto =
+                              await FirebaseStorage.instance
+                                  .ref("RoutineDetailsPhoto")
+                                  .child(UUID)
+                                  .child(DateTime.now()
+                                      .millisecondsSinceEpoch
+                                      .toString())
+                                  .putFile(File(
+                                      newRoutineVM.routineDetailsImagePath!));
+
                           final routineImagePath = await uploadRoutineCoverImage
                               .ref
                               .getDownloadURL();
+
+                          final routineDetailsImagePath =
+                              await uploadRoutineDetailsPhoto.ref
+                                  .getDownloadURL();
+
                           final routine = RoutineModel(
                               routineId: UUID,
                               uid: FirebaseAuth.instance.currentUser?.uid ??
@@ -87,7 +110,10 @@ class RoutineDetails extends StatelessWidget {
                               routineEnd:
                                   routineDetailsVM.routineEnd.toString(),
                               routineContent: _controller.text,
-                              routineCoverImagePath: routineImagePath);
+                              routineCoverImagePath: routineImagePath,
+                              routineDetailsImagePath: [
+                                routineDetailsImagePath
+                              ]);
 
                           FirebaseFirestore.instance
                               .collection("Routines")
@@ -184,20 +210,44 @@ class RoutineDetails extends StatelessWidget {
                         .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                 ),
-                TextField(
-                  controller: _controller,
-                  textInputAction: TextInputAction.newline,
-                  maxLines: null,
-                  maxLength: 300,
-                  decoration: const InputDecoration(
-                      hintText: "Oluşturacağın Rutin için detaylar ekle",
-                      hintStyle: TextStyles.kTextStylePrimaryGrey,
-                      border: InputBorder.none),
+                Column(
+                  children: [
+                    TextField(
+                      controller: _controller,
+                      textInputAction: TextInputAction.newline,
+                      maxLines: null,
+                      maxLength: 300,
+                      decoration: const InputDecoration(
+                          hintText: "Oluşturacağın Rutin için detaylar ekle",
+                          hintStyle: TextStyles.kTextStylePrimaryGrey,
+                          border: InputBorder.none),
+                    ),
+                    newRoutineVM.routineDetailsImagePath == null
+                        ? const SizedBox(height: 1)
+                        : Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 12.0, top: 4),
+                            child: SizedBox(
+                              height: size.height / 3.5,
+                              width: size.width / 2.5,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.file(
+                                    File(newRoutineVM.routineDetailsImagePath!),
+                                    fit: BoxFit.cover,
+                                    opacity:
+                                        const AlwaysStoppedAnimation(0.96)),
+                              ),
+                            ),
+                          )
+                  ],
                 ),
                 Row(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        addRoutineDetailPhoto();
+                      },
                       child: SizedBox(
                           height: 30,
                           width: 20,
