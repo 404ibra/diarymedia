@@ -41,13 +41,45 @@ class RoutineView extends StatelessWidget {
             child: SingleChildScrollView(
               child: SafeArea(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    RoutineHead(routineVM: routineVM, data: data, size: size),
-                    const SizedBox(height: 15),
-                    routineVM.RoutineContents(size, data)
-                  ],
-                ),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      RoutineHead(routineVM: routineVM, data: data, size: size),
+                      const SizedBox(height: 15),
+                      // routineVM.RoutineContents(size, data)
+                      FutureBuilder<DocumentSnapshot>(
+                        future: FirebaseFirestore.instance
+                            .collection('Routines')
+                            .doc(data['routine_id'])
+                            .get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          } else if (snapshot.hasError) {
+                            return Text('Veri alınamadı: ${snapshot.error}');
+                          } else if (!snapshot.hasData ||
+                              snapshot.data == null) {
+                            return Text('Veri bulunamadı.');
+                          }
+
+                          List<dynamic> list = [];
+
+                          if (snapshot.data!.exists) {
+                            List<dynamic> resp =
+                                snapshot.data!.get('routine_content') ?? [];
+
+                            list.addAll(resp);
+                          }
+
+                          return ListView.builder(
+                            itemCount: list.length,
+                            itemBuilder: (context, index) {
+                              return Text(data);
+                            },
+                          );
+                        },
+                      )
+                    ]),
               ),
             )));
   }

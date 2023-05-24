@@ -28,6 +28,8 @@ class RoutineViewModel extends ChangeNotifier {
             print("error var");
           }
           final routineContentResponse = routine.data!.data()!;
+          print("test");
+
           return SizedBox(
             height: size.height,
             child: ListView.builder(
@@ -66,6 +68,8 @@ class RoutineViewModel extends ChangeNotifier {
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal),
                           ),
+                          //Image.network(routineContentResponse[
+                          //  'routine_details_image_path'][0]),
                           const Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 16.0, vertical: 8),
