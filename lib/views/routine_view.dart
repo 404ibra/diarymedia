@@ -54,29 +54,29 @@ class RoutineView extends StatelessWidget {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return CircularProgressIndicator();
+                            return const CircularProgressIndicator();
                           } else if (snapshot.hasError) {
                             return Text('Veri alınamadı: ${snapshot.error}');
                           } else if (!snapshot.hasData ||
                               snapshot.data == null) {
                             return Text('Veri bulunamadı.');
                           }
+                          Future<void> getFriendsList() async {
+                            final friendsList = await FirebaseFirestore.instance
+                                .collection("Routines")
+                                .doc(data['routine_id'])
+                                .get()
+                                .then((value) {
+                              List list = [];
 
-                          List<dynamic> list = [];
-
-                          if (snapshot.data!.exists) {
-                            List<dynamic> resp =
-                                snapshot.data!.get('routine_content') ?? [];
-
-                            list.addAll(resp);
+                              return list
+                                  .addAll(value.data()!["routine_content"]);
+                            });
                           }
 
-                          return ListView.builder(
-                            itemCount: list.length,
-                            itemBuilder: (context, index) {
-                              return Text(data);
-                            },
-                          );
+                          getFriendsList();
+
+                          return Text("data");
                         },
                       )
                     ]),
