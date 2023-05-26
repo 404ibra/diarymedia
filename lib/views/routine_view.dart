@@ -61,22 +61,15 @@ class RoutineView extends StatelessWidget {
                               snapshot.data == null) {
                             return Text('Veri bulunamadı.');
                           }
-                          Future<void> getFriendsList() async {
-                            final friendsList = await FirebaseFirestore.instance
-                                .collection("Routines")
-                                .doc(data['routine_id'])
-                                .get()
-                                .then((value) {
-                              List list = [];
+                          final snap =
+                              snapshot.data!.get('routine_content') as List;
 
-                              return list
-                                  .addAll(value.data()!["routine_content"]);
-                            });
-                          }
-
-                          getFriendsList();
-
-                          return Text("data");
+                          return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: snap.length,
+                              itemBuilder: (context, index) {
+                                return Text(snap[index]);
+                              });
                         },
                       )
                     ]),
@@ -84,3 +77,23 @@ class RoutineView extends StatelessWidget {
             )));
   }
 }
+
+
+/*   Future<void> getFriendsList() async {
+                            final friendsList = await FirebaseFirestore.instance
+                                .collection("Routines")
+                                .doc(data['routine_id'])
+                                .get()
+                                .then((value) {
+                              List list = [];
+
+                              final nl =
+                                  list.addAll(value.data()!["routine_content"]);
+                              print(list);
+
+                              return list
+                                  .addAll(value.data()!["routine_content"]);
+                            });
+                          }
+
+                          getFriendsList();*/
