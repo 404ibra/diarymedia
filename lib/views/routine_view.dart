@@ -69,6 +69,10 @@ class RoutineView extends StatelessWidget {
                               shrinkWrap: true,
                               itemCount: snap.length,
                               itemBuilder: (context, index) {
+                                DateTime routineDate =
+                                    (snap[index]['routine_date'] as Timestamp)
+                                        .toDate();
+
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       left: 16.0, right: 16, bottom: 12),
@@ -76,8 +80,22 @@ class RoutineView extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(snap[index]['routine_text']),
+                                      Text(
+                                        "${routineDate.day.toString()}/${routineDate.month.toString()}/${routineDate.year.toString()}",
+                                        style: const TextStyle(
+                                            color: CustomColors
+                                                .profilePrimaryColor,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 15),
+                                      ),
                                       const SizedBox(height: 5),
+                                      Text(
+                                        snap[index]['routine_text'],
+                                        style: const TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      const SizedBox(height: 7),
                                       Center(
                                         child: Container(
                                             height: size.height / 3.1,
@@ -104,6 +122,7 @@ class RoutineView extends StatelessWidget {
                                               ),
                                             )),
                                       ),
+                                      const SizedBox(height: 3),
                                       const Divider()
                                     ],
                                   ),

@@ -39,7 +39,7 @@ class RoutineHead extends StatelessWidget {
                   padding: EdgeInsets.only(
                       left: 20.0, right: 16, top: 8, bottom: 10),
                   child: Text(
-                    "İbrahim ile 80 günde Devr-i Alem",
+                    "IMDB +9.0 Filmleri İzliyoruz",
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: CustomColors.profilePrimaryColor,
@@ -52,7 +52,7 @@ class RoutineHead extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       Container(
-                        height: size.height / 4,
+                        height: size.height / 3.2,
                         width: size.width * 0.9,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
@@ -90,7 +90,7 @@ class RoutineHead extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
