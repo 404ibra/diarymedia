@@ -5,10 +5,12 @@ import '../constant/constants.dart';
 class RoutineViewModel extends ChangeNotifier {
   double currentHeight = 310;
   bool aniamatedStarted = false;
+  bool imageAnimatedStarted = false;
 
   void changeInformationHeight(double pixel, bool showInformation) {
     currentHeight = pixel;
     aniamatedStarted = showInformation;
+    imageAnimatedStarted = !imageAnimatedStarted;
     notifyListeners();
   }
 

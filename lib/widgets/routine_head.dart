@@ -51,8 +51,11 @@ class RoutineHead extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Container(
-                        height: size.height / 3.2,
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 1500),
+                        height: routineVM.imageAnimatedStarted == false
+                            ? size.height / 3.2
+                            : 0,
                         width: size.width * 0.9,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),

@@ -64,7 +64,6 @@ class RoutineView extends StatelessWidget {
                           final snap =
                               snapshot.data!.get('routine_content') as List;
                           //  print(snap[1]['routine_text']);
-
                           return ListView.builder(
                               shrinkWrap: true,
                               itemCount: snap.length,
@@ -72,7 +71,6 @@ class RoutineView extends StatelessWidget {
                                 DateTime routineDate =
                                     (snap[index]['routine_date'] as Timestamp)
                                         .toDate();
-
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       left: 16.0, right: 16, bottom: 12),
