@@ -63,12 +63,30 @@ class RoutineView extends StatelessWidget {
                           }
                           final snap =
                               snapshot.data!.get('routine_content') as List;
+                          //  print(snap[1]['routine_text']);
 
                           return ListView.builder(
                               shrinkWrap: true,
                               itemCount: snap.length,
                               itemBuilder: (context, index) {
-                                return Text(snap[index]);
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(snap[index]['routine_text']),
+                                      SizedBox.square(
+                                          dimension: 100,
+                                          child: Image.network(
+                                            snap[index]['routine_image_path'],
+                                            fit: BoxFit.cover,
+                                          )),
+                                      const Divider()
+                                    ],
+                                  ),
+                                );
                               });
                         },
                       )
