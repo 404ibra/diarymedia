@@ -70,19 +70,40 @@ class RoutineView extends StatelessWidget {
                               itemCount: snap.length,
                               itemBuilder: (context, index) {
                                 return Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16.0),
+                                  padding: const EdgeInsets.only(
+                                      left: 16.0, right: 16, bottom: 12),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(snap[index]['routine_text']),
-                                      SizedBox.square(
-                                          dimension: 100,
-                                          child: Image.network(
-                                            snap[index]['routine_image_path'],
-                                            fit: BoxFit.cover,
-                                          )),
+                                      const SizedBox(height: 5),
+                                      Center(
+                                        child: Container(
+                                            height: size.height / 3.1,
+                                            width: size.width / 2.2,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      color: Colors.black
+                                                          .withOpacity(0.6),
+                                                      offset:
+                                                          const Offset(0, 2),
+                                                      spreadRadius: 0.2,
+                                                      blurRadius: 0.2)
+                                                ]),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              child: Image.network(
+                                                snap[index]
+                                                    ['routine_image_path'],
+                                                fit: BoxFit.cover,
+                                              ),
+                                            )),
+                                      ),
                                       const Divider()
                                     ],
                                   ),
