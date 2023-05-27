@@ -20,7 +20,7 @@ Padding ExploreRoutineView(HomePageViewModel homePageVM, Size size) {
           }
           final response = snapshot.data!;
           return MasonryGridView.count(
-              physics: const PageScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               shrinkWrap: true,
               crossAxisCount: 2,
               mainAxisSpacing: 8,

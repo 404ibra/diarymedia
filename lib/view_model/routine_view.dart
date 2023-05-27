@@ -10,7 +10,12 @@ class RoutineViewModel extends ChangeNotifier {
   void changeInformationHeight(double pixel, bool showInformation) {
     currentHeight = pixel;
     aniamatedStarted = showInformation;
-    imageAnimatedStarted = !imageAnimatedStarted;
+
+    notifyListeners();
+  }
+
+  void changeImageAnimation(bool animatedBollenValue) {
+    imageAnimatedStarted = animatedBollenValue;
     notifyListeners();
   }
 

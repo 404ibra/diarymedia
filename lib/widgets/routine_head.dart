@@ -98,22 +98,44 @@ class RoutineHead extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Column(
-                        children: const <Widget>[
-                          Icon(Icons.bookmark_border_rounded),
+                        children: <Widget>[
+                          AnimatedContainer(
+                              duration: const Duration(milliseconds: 1300),
+                              height: routineVM.imageAnimatedStarted == true
+                                  ? 50
+                                  : null,
+                              child: const Icon(Icons.bookmark_border_rounded)),
                         ],
                       ),
                       Column(
-                        children: const <Widget>[
-                          Icon(Icons.favorite_border_rounded),
+                        children: <Widget>[
+                          AnimatedContainer(
+                              duration: const Duration(milliseconds: 1300),
+                              height: routineVM.imageAnimatedStarted == true
+                                  ? 50
+                                  : null,
+                              child: const Icon(Icons.favorite_border_rounded)),
                         ],
                       ),
                       Column(
-                        children: const <Widget>[
-                          Icon(Icons.mode_comment_outlined),
+                        children: <Widget>[
+                          AnimatedContainer(
+                              duration: const Duration(milliseconds: 1300),
+                              height: routineVM.imageAnimatedStarted == true
+                                  ? 50
+                                  : null,
+                              child: const Icon(Icons.mode_comment_outlined)),
                         ],
                       ),
                       Column(
-                        children: const <Widget>[Icon(Icons.share)],
+                        children: <Widget>[
+                          AnimatedContainer(
+                              duration: const Duration(milliseconds: 1300),
+                              height: routineVM.imageAnimatedStarted == true
+                                  ? 50
+                                  : null,
+                              child: const Icon(Icons.share))
+                        ],
                       ),
                     ],
                   ),
