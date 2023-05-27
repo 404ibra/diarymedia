@@ -29,20 +29,20 @@ class RoutineView extends StatelessWidget {
             },
           ),
         ),
-        body: NotificationListener<ScrollNotification>(
-            onNotification: (notification) {
-              if (notification.metrics.pixels > 60) {
-                routineVM.changeInformationHeight(0, true);
-                routineVM.changeImageAnimation(true);
-              } else if (notification.metrics.pixels < -60) {
-                routineVM.changeInformationHeight(350, false);
-                if (routineVM.aniamatedStarted == false) {
-                  routineVM.changeImageAnimation(false);
+        body: SingleChildScrollView(
+          child: NotificationListener<ScrollNotification>(
+              onNotification: (notification) {
+                if (notification.metrics.pixels > 60) {
+                  routineVM.changeInformationHeight(0, true);
+                  routineVM.changeImageAnimation(true);
+                } else if (notification.metrics.pixels < -60) {
+                  routineVM.changeInformationHeight(350, false);
+                  if (routineVM.aniamatedStarted == false) {
+                    routineVM.changeImageAnimation(false);
+                  }
                 }
-              }
-              return true;
-            },
-            child: SingleChildScrollView(
+                return true;
+              },
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -61,7 +61,7 @@ class RoutineView extends StatelessWidget {
                         } else if (snapshot.hasError) {
                           return Text('Veri alınamadı: ${snapshot.error}');
                         } else if (!snapshot.hasData || snapshot.data == null) {
-                          return Text('Veri bulunamadı.');
+                          return const Text('Veri bulunamadı.');
                         }
                         final snap =
                             snapshot.data!.get('routine_content') as List;
@@ -128,8 +128,8 @@ class RoutineView extends StatelessWidget {
                             });
                       },
                     )
-                  ]),
-            )));
+                  ])),
+        ));
   }
 }
 
